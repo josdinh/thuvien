@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CV_Thuvien>
+            <version>0.1.2</version>
+        </CV_Thuvien>
+    </modules>
+    <frontend>
+        <routers>
+            <thuvien>
+                <use>standard</use>
+                <args>
+                    <module>CV_Thuvien</module>
+                    <frontName>thuvien</frontName>
+                </args>
+            </thuvien>
+        </routers>
+        <layout>
+            <updates>
+                <thuvien>
+                    <file>CV_Thuvien.xml</file>
+                </thuvien>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <CV_Thuvien>
+                    <files>
+                        <default>CV_Thuvien.csv</default>
+                    </files>
+                </CV_Thuvien>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <!-- <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <thuvien after="Mage_Adminhtml">CV_Thuvien</thuvien>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers> -->
+
+        <routers>
+            <thuvien>
+                <use>admin</use>
+                <args>
+                    <module>CV_Thuvien</module>
+                    <frontName>thuvien</frontName>
+                </args>
+            </thuvien>
+        </routers>
+
+    </admin>
+    <adminhtml>
+        <menu>
+            <thuvien module="thuvien">
+            <title>Quan ly thu vien</title>
+            <sort_order>68</sort_order>
+                <children>
+                    <items module="thuvien">
+                        <title>Quan ly thu vien</title>
+                        <sort_order>0</sort_order>
+                        <action>thuvien/adminhtml_thuvien</action>
+                    </items>
+                    <items1 module="thuvien">
+                        <title>docgia</title>
+                        <sort_order>1</sort_order>
+                        <action>thuvien/adminhtml_docgia</action>
+                    </items1>
+                </children>
+            </thuvien>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <CV_Thuvien>
+                            <title>Managelicense Module</title>
+                            <sort_order>10</sort_order>
+                        </CV_Thuvien>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <thuvien>
+                    <file>cv_thuvien.xml</file>
+                </thuvien>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <models>
+            <thuvien>
+                <class>CV_Thuvien_Model</class>
+                <resourceModel>thuvien_mysql4</resourceModel>
+            </thuvien>
+            <thuvien_mysql4>
+                <class>CV_Thuvien_Model_Mysql4</class>
+                <entities>
+                    <docgia>
+                        <table>dgdocgia</table>
+                    </docgia>
+                    <lephi>
+                        <table>dglephi</table>
+                    </lephi>
+                    <thanhpho>
+                        <table>dgthanhpho</table>
+                    </thanhpho>
+                </entities>
+            </thuvien_mysql4>
+        </models>
+        <resources>
+            <thuvien_setup>
+                <setup>
+                    <module>CV_Thuvien</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </thuvien_setup>
+            <thuvien_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </thuvien_write>
+            <thuvien_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </thuvien_read>
+        </resources>
+        <blocks>
+            <thuvien>
+                <class>CV_Thuvien_Block</class>
+            </thuvien>
+        </blocks>
+        <helpers>
+            <thuvien>
+                <class>CV_Thuvien_Helper</class>
+            </thuvien>
+        </helpers>
+
+        <default>
+        </default>
+    </global>
+</config>

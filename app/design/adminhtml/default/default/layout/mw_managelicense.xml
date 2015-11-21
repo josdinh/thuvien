@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <managelicense_adminhtml_managelicense_index>
+        <reference name="content">
+            <block type="managelicense/adminhtml_managelicense" name="managelicense" />
+        </reference>
+    </managelicense_adminhtml_managelicense_index>
+    
+    <managelicense_adminhtml_managelicense_edit>
+    	<reference name="head">		
+				<action method="addCss"><stylesheet>mw_managelicense/css/style.css</stylesheet></action>	
+		</reference>
+    </managelicense_adminhtml_managelicense_edit>
+    
+    <managelicense_adminhtml_extension_index>
+        <reference name="content">
+            <block type="managelicense/adminhtml_extension" name="extension" />
+        </reference>
+    </managelicense_adminhtml_extension_index>
+</layout>

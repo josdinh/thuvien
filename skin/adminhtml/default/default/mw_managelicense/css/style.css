@@ -1,0 +1,4 @@
+.form-list td.value input.input-text, .form-list td.value textarea
+{
+width: 450px;
+}

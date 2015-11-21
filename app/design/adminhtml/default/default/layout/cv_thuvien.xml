@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <thuvien_adminhtml_docgia_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_docgia" name="docgia" />
+        </reference>
+    </thuvien_adminhtml_docgia_index>
+
+    <thuvien_adminhtml_docgia_edit>
+        <reference name="head">
+            <action method="addCss"><stylesheet>mw_managelicense/css/style.css</stylesheet></action>
+        </reference>
+    </thuvien_adminhtml_docgia_edit>
+
+</layout>
