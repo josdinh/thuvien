@@ -83,29 +83,30 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Grid extends Mage_Adminhtml_Block_Widget
                  'is_system' => true,
          ));
  */
-         $this->addExportType('*exportCsv', Mage::helper('managelicense')->__('CSV'));
-         $this->addExportType('*exportXml', Mage::helper('managelicense')->__('XML'));
+         $this->addExportType('*exportCsv', Mage::helper('thuvien')->__('CSV'));
+         $this->addExportType('*exportXml', Mage::helper('thuvien')->__('XML'));
 
       return parent::_prepareColumns();
   }
 
     protected function _prepareMassaction()
     {
-        $this->setMassactionIdField('managelicense_id');
-        $this->getMassactionBlock()->setFormFieldName('managelicense');
+        $this->setMassactionIdField('MaDocGia');
+        $this->getMassactionBlock()->setFormFieldName('docgia');
 
         $this->getMassactionBlock()->addItem('delete', array(
-             'label'    => Mage::helper('managelicense')->__('Delete'),
+             'label'    => Mage::helper('thuvien')->__('Xóa Độc giả đã chọn'),
              'url'      => $this->getUrl('*/*/massDelete'),
-             'confirm'  => Mage::helper('managelicense')->__('Are you sure?')
+            'style' => 'min-width:45px',
+             'confirm'  => Mage::helper('thuvien')->__('Bạn có chắc chắn xóa không?')
         ));
 
-        $statuses = Mage::getSingleton('managelicense/status')->getOptionArray();
+        /* $statuses = Mage::getSingleton('thuvien/status')->getOptionArray();
 
         array_unshift($statuses, array('label'=>'', 'value'=>''));
         $this->getMassactionBlock()->addItem('status', array(
-             'label'=> Mage::helper('managelicense')->__('Change status'),
-             'url'  => $this->getUrl('*/*/massStatus', array('_current'=>true)),
+             'label'=> Mage::helper('managelicense')->__('Thay đổi trạng thái'),
+             'url'  => $this->getUrl('//massStatus', array('_current'=>true)),
              'additional' => array(
                     'visibility' => array(
                          'name' => 'status',
@@ -115,7 +116,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Grid extends Mage_Adminhtml_Block_Widget
                          'values' => $statuses
                      )
              )
-        ));
+        ));*/
         return $this;
     }
 

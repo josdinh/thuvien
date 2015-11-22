@@ -2,7 +2,7 @@
 <config>
     <modules>
         <CV_Thuvien>
-            <version>0.1.2</version>
+            <version>0.1.3</version>
         </CV_Thuvien>
     </modules>
     <frontend>
@@ -114,6 +114,12 @@
                     <thanhpho>
                         <table>dgthanhpho</table>
                     </thanhpho>
+                    <lplydo>
+                        <table>dglydotratien</table>
+                    </lplydo>
+                    <lpghichu>
+                        <table>dgghichulephi</table>
+                    </lpghichu>
                 </entities>
             </thuvien_mysql4>
         </models>

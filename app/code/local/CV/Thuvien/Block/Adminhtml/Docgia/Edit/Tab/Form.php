@@ -21,7 +21,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Form extends Mage_Adminhtml_Blo
       	'class' => 'required-entry',
       	'required' => true,
       	//'onchange'=>'rendkey()',
-      	'name' => 'extension'
+      	'name' => 'HoVaTen'
       ));
       
       $fieldset->addField('NamSinh','text',array(
@@ -93,7 +93,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Form extends Mage_Adminhtml_Blo
       $fieldset->addField('GhiChu','text',array(
           'label' => Mage::helper('thuvien')->__('Ghi chú'),
           'class' => 'required-entry',
-          'required' => true,
+          'required' => false,
           'name' => 'GhiChu'
       ));
 

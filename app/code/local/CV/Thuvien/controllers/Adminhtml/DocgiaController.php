@@ -53,11 +53,13 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
 
     public function saveAction() {
         if ($data = $this->getRequest()->getPost()) {
+            zend_debug::dump($data);
 
-            if(isset($_FILES['filename']['name']) && $_FILES['filename']['name'] != '') {
+            if(isset($_FILES['Hinh']['name']) && $_FILES['Hinh']['name'] != '') {
                 try {
+
                     /* Starting upload */
-                    $uploader = new Varien_File_Uploader('filename');
+                    $uploader = new Varien_File_Uploader('Hinh');
 
                     // Any extention would work
                     $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
@@ -70,21 +72,23 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
                     $uploader->setFilesDispersion(false);
 
                     // We set media as the upload dir
-                    $path = Mage::getBaseDir('media') . DS ;
-                    $uploader->save($path, $_FILES['filename']['name'] );
+                    $path = Mage::getBaseDir('media') . DS .'docgia'.DS;
+                    $uploader->save($path, $_FILES['Hinh']['name'] );
 
                 } catch (Exception $e) {
 
                 }
 
                 //this way the name is saved in DB
-                $data['filename'] = $_FILES['filename']['name'];
+                $data['Hinh'] = 'docgia/'.$_FILES['Hinh']['name'];
+            }
+            else {
+                unset( $data['Hinh'] );
             }
 
-
-            $model = Mage::getModel('managelicense/managelicense');
+            $model = Mage::getModel('thuvien/docgia');
             $model->setData($data)
-                ->setId($this->getRequest()->getParam('id'));
+                  ->setId($this->getRequest()->getParam('id'));
 
             try {
                 if ($model->getCreatedTime == NULL || $model->getUpdateTime() == NULL) {
@@ -96,7 +100,7 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
                         $model->setActiveDate(now());
                         $domain = $model->getMagentoUrl();
                         $extension =  $model->getExtension();
-                        $rendkey = 	Mage::helper('managelicense')->getKey($extension,$domain);
+                        $rendkey = 	Mage::helper('thuvien')->getKey($extension,$domain);
                         $model->setKeyActive($rendkey);
                     }
                     else
@@ -108,7 +112,7 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
                 }
 
                 $model->save();
-                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('managelicense')->__('Item was successfully saved'));
+                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('thuvien')->__('Thông tin Độc giả đã được lưu thành công.'));
                 Mage::getSingleton('adminhtml/session')->setFormData(false);
 
                 if ($this->getRequest()->getParam('back')) {
@@ -124,19 +128,19 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
                 return;
             }
         }
-        Mage::getSingleton('adminhtml/session')->addError(Mage::helper('managelicense')->__('Unable to find item to save'));
+        Mage::getSingleton('adminhtml/session')->addError(Mage::helper('thuvien')->__('Không tìm thấy độc giả để lưu.'));
         $this->_redirect('*/*/');
     }
 
     public function deleteAction() {
         if( $this->getRequest()->getParam('id') > 0 ) {
             try {
-                $model = Mage::getModel('managelicense/managelicense');
+                $model = Mage::getModel('thuvien/docgia');
 
                 $model->setId($this->getRequest()->getParam('id'))
                     ->delete();
 
-                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Item was successfully deleted'));
+                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Độc giả đã được xóa thành công'));
                 $this->_redirect('*/*/');
             } catch (Exception $e) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
@@ -147,18 +151,18 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
     }
 
     public function massDeleteAction() {
-        $managelicenseIds = $this->getRequest()->getParam('managelicense');
-        if(!is_array($managelicenseIds)) {
-            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
+        $docgiaIds = $this->getRequest()->getParam('docgia');
+        if(!is_array($docgiaIds)) {
+            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Vui lòng chọn Độc giả'));
         } else {
             try {
-                foreach ($managelicenseIds as $managelicenseId) {
-                    $managelicense = Mage::getModel('managelicense/managelicense')->load($managelicenseId);
-                    $managelicense->delete();
+                foreach ($docgiaIds as $docgiaid) {
+                    $docgia = Mage::getModel('thuvien/docgia')->load($docgiaid);
+                    $docgia->delete();
                 }
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('adminhtml')->__(
-                        'Total of %d record(s) were successfully deleted', count($managelicenseIds)
+                        'Có %d Độc giả đã được xóa thành công', count($docgiaIds)
                     )
                 );
             } catch (Exception $e) {
@@ -168,34 +172,12 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
         $this->_redirect('*/*/index');
     }
 
-    public function massStatusAction()
-    {
-        $managelicenseIds = $this->getRequest()->getParam('managelicense');
-        if(!is_array($managelicenseIds)) {
-            Mage::getSingleton('adminhtml/session')->addError($this->__('Please select item(s)'));
-        } else {
-            try {
-                foreach ($managelicenseIds as $managelicenseId) {
-                    $managelicense = Mage::getSingleton('managelicense/managelicense')
-                        ->load($managelicenseId)
-                        ->setStatus($this->getRequest()->getParam('status'))
-                        ->setIsMassupdate(true)
-                        ->save();
-                }
-                $this->_getSession()->addSuccess(
-                    $this->__('Total of %d record(s) were successfully updated', count($managelicenseIds))
-                );
-            } catch (Exception $e) {
-                $this->_getSession()->addError($e->getMessage());
-            }
-        }
-        $this->_redirect('*/*/index');
-    }
+
 
     public function exportCsvAction()
     {
-        $fileName   = 'managelicense.csv';
-        $content    = $this->getLayout()->createBlock('managelicense/adminhtml_managelicense_grid')
+        $fileName   = 'danhsachdocgia.csv';
+        $content    = $this->getLayout()->createBlock('thuvien/adminhtml_docgia_grid')
             ->getCsv();
 
         $this->_sendUploadResponse($fileName, $content);
@@ -203,8 +185,8 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
 
     public function exportXmlAction()
     {
-        $fileName   = 'managelicense.xml';
-        $content    = $this->getLayout()->createBlock('managelicense/adminhtml_managelicense_grid')
+        $fileName   = 'danhsachdocgia.xml';
+        $content    = $this->getLayout()->createBlock('thuvien/adminhtml_docgia_grid')
             ->getXml();
 
         $this->_sendUploadResponse($fileName, $content);

@@ -17,7 +17,8 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Lephi extends Mage_Adminhtml_Bl
         $collection = Mage::getModel('thuvien/lephi')->getCollection();
         $currentId = $this->getRequest()->getParam("id");
         $collection->addFieldToFilter("MaDocGia",$currentId);
-        $collection->getSelect()->join( array('lydotra'=> 'dglydotratien'), 'lydotra.MaLyDo = main_table.MaLyDo', array('lydotra.LyDo'));
+        $collection->getSelect()->join( array('lydotra'=> 'dglydotratien'), 'lydotra.MaLyDo = main_table.MaLyDo', array('lydotra.LyDo'))
+                                ->joinLeft( array('ghichulp'=> 'dgghichulephi'), 'ghichulp.MaGhiChu = main_table.MaGhiChu', array('ghichulp.GhiChu'));
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -54,12 +55,12 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Lephi extends Mage_Adminhtml_Bl
             'index'     => 'HetHan',
         ));
 
-        $this->addColumn('MaGhiChu', array(
-            'header'    => Mage::helper('thuvien')->__('Mã ghi chú'),
+       /* $this->addColumn('GhiChu', array(
+            'header'    => Mage::helper('thuvien')->__('Ghi chú'),
             'align'     =>'right',
             'width'     => '50px',
-            'index'     => 'MaGhiChu',
-        ));
+            'index'     => 'GhiChu',
+        ));*/
 
         $this->addColumn('MaTaichanh', array(
             'header'    => Mage::helper('thuvien')->__('Xóa'),
