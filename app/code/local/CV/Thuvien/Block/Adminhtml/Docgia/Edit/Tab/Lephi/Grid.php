@@ -1,12 +1,12 @@
 <?php
 
-class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Lephi extends Mage_Adminhtml_Block_Widget_Grid
+class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Lephi_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->setId('docgiaGrid');
+        $this->setId('lephidocgiaGrid');
         $this->setDefaultSort('MaDocGia');
         $this->setDefaultDir('DESC');
         $this->setSaveParametersInSession(true);
@@ -15,7 +15,14 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Lephi extends Mage_Adminhtml_Bl
     protected function _prepareCollection()
     {
         $collection = Mage::getModel('thuvien/lephi')->getCollection();
-        $currentId = $this->getRequest()->getParam("id");
+        $currentId = 0;
+        if (Mage::registry('docgia_data')) {
+            $currentId = Mage::registry('docgia_data')->getData('MaDocGia');
+        }
+        else if(Mage::registry('MaDocGia_Lephi')){
+            $currentId = Mage::registry('MaDocGia_Lephi');
+        }
+
         $collection->addFieldToFilter("MaDocGia",$currentId);
         $collection->getSelect()->join( array('lydotra'=> 'dglydotratien'), 'lydotra.MaLyDo = main_table.MaLyDo', array('lydotra.LyDo'))
                                 ->joinLeft( array('ghichulp'=> 'dgghichulephi'), 'ghichulp.MaGhiChu = main_table.MaGhiChu', array('ghichulp.GhiChu'));
@@ -31,6 +38,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Lephi extends Mage_Adminhtml_Bl
             'align'     =>'left',
             'width'     => '50px',
             'index'     => 'NgayNhap',
+
         ));
 
         $this->addColumn('LyDo', array(
@@ -73,10 +81,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Lephi extends Mage_Adminhtml_Bl
         return parent::_prepareColumns();
     }
 
-
-    public function getRowUrl($row)
-    {
-        return $this->getUrl('/edit', array('id' => $row->getId()));
+    private function expiredDates() {
+        return "d-M-yyyy";//Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
     }
-
 }

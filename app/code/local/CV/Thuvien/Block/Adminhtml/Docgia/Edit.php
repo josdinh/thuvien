@@ -38,55 +38,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit extends Mage_Adminhtml_Block_Widget
                 editForm.submit($('edit_form').action+'back/edit/');
             }
 
-            function test()
-            {
-                var addLephiUrl = '".Mage::helper("adminhtml")->getUrl("thuvien/adminhtml_docgia/addLePhi")."';
-                alert(addLephiUrl);
-            	$('loading-mask').show();
-				new Ajax.Request(addLephiUrl, {
-				method: 'post',
-				parameters: $('edit_form').serialize(),
-				onSuccess: function(data){
-					alert('ok');
-					$('loading-mask').hide();
-				},
-				onFailure: function(data){
-							alert('Error occured when trying to rend key.');
-							$('loading-mask').hide();
-					}
-				});
-            }
-            
-           /*function rendkey()            
-            {
-            	if($('status').value==2)
-            	{
-            	var base_url_js = '".Mage::getBaseUrl('link',Mage::getStoreConfig('web/secure/use_in_frontend') || Mage::getStoreConfig('web/secure/use_in_adminhtml'))."';
-            	 var mage =    $('magento_url').value;  
-            	 var module =   $('extension').value;   
-            	$('loading-mask').show();
-				new Ajax.Request(base_url_js+'managelicense/index/rendkey', {
-				method: 'post',
-				parameters: {'domain':mage, 'module':module}, 
-				onSuccess: function(data){
-					if(data.responseText)
-						{																		
-							$('key_active').value = data.responseText;				
-						}				 
-					$('loading-mask').hide();
-				},
-				onFailure: function(data){					
-							alert('Error occured when trying to rend key.');	
-							$('loading-mask').hide();					
-					}
-				});
-				}
-				else
-				{
-				 $('key_active').value = '';	
-    			}
 
-    		}*/
         ";
     }
 

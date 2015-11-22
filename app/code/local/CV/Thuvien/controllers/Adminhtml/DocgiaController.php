@@ -208,20 +208,59 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
         die;
     }
 
-
     public function addLePhiAction()
     {
-        echo "ok";
+        $data = $this->getRequest()->getParams();
+        $resultArr = array();
+
+        if ( isset($data['MaDocGia']) &&  intval($data['MaDocGia']) >0)       {
+                if ($data['NgayNhap']){
+                   $data['NgayNhap'] = date("Y-m-d",strtotime($data['NgayNhap'])) ;
+                }
+                if ($data['HetHan']){
+                    $data['HetHan'] = date("Y-m-d",strtotime($data['HetHan'])) ;
+                }
+                $lephiDocgia = Mage::getModel('thuvien/lephi');
+                if(!Mage::registry('MaDocGia_Lephi')){
+                    Mage::register('MaDocGia_Lephi', $data['MaDocGia']);
+                }
+                $lephiDocgia->setData($data)->save();
+                $resultArr['success'] = 1;
+                $resultArr['message'] = "Thêm lệ phí thành công!";
+                $resultArr['content'] = $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_lephi_grid')->toHtml();
+                $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
+                return;
+        }
+        $resultArr['success'] = 0;
+        $resultArr['message'] = "Vui lòng chọn tác giả cần thêm lệ phí!";
+        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
         return;
     }
 
-    public function lephidocgiaAction()
+    public function deleteLePhiAction()
     {
-        $this->loadLayout();
-        $this->getLayout()->getBlock('thuvien.docgia.edit.tab.lephi');
-          //  ->setProductsCrossSell($this->getRequest()->getPost('products_crosssell', null));
-        $this->renderLayout();
+        $data = $this->getRequest()->getParams();
+        $resultArr = array();
+        if ( isset($data['MaDocGia']) &&  intval($data['MaDocGia']) >0 && isset($data['MaTaichanh']) &&  intval($data['MaTaichanh']) >0)       {
+            $lephiDocgia = Mage::getModel('thuvien/lephi')->load($data['MaTaichanh']);
+            if ($lephiDocgia->getData('MaTaichanh')) {
+                $lephiDocgia->delete();
+            }
+            if(!Mage::registry('MaDocGia_Lephi')){
+                Mage::register('MaDocGia_Lephi', $data['MaDocGia']);
+            }
+            $resultArr['success'] = 1;
+            $resultArr['message'] = "Xóa lệ phí thành công!";
+            $resultArr['content'] = $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_lephi_grid')->toHtml();
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
+            return;
+        }
+        $resultArr['success'] = 0;
+        $resultArr['message'] = "Vui lòng chọn tác giả cần xóa lệ phí!";
+        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
+        return;
     }
+
 
 }
 

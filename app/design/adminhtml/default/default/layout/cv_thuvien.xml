@@ -8,7 +8,7 @@
 
     <thuvien_adminhtml_docgia_edit>
         <reference name="head">
-            <action method="addCss"><stylesheet>mw_managelicense/css/style.css</stylesheet></action>
+             <action method="addItem"><type>skin_js</type><name>js/docgia.js</name></action>
         </reference>
     </thuvien_adminhtml_docgia_edit>
 
