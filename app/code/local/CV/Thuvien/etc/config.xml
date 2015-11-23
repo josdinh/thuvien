@@ -61,7 +61,7 @@
             <sort_order>68</sort_order>
                 <children>
                     <items module="thuvien">
-                        <title>Quan ly thu vien</title>
+                        <title>Tác phẩm</title>
                         <sort_order>0</sort_order>
                         <action>thuvien/adminhtml_thuvien</action>
                     </items>
@@ -110,6 +110,7 @@
             <thuvien_mysql4>
                 <class>CV_Thuvien_Model_Mysql4</class>
                 <entities>
+                    <!-- docgia -->
                     <docgia>
                         <table>dgdocgia</table>
                     </docgia>
@@ -125,6 +126,16 @@
                     <lpghichu>
                         <table>dgghichulephi</table>
                     </lpghichu>
+                    <dgmuontra>
+                        <table>dgmuontra</table>
+                    </dgmuontra>
+                    <!-- tacpham -->
+                    <tpcom>
+                        <table>tptacphamcom</table>
+                    </tpcom>
+                    <tppop>
+                        <table>tptacphampop</table>
+                    </tppop>
                 </entities>
             </thuvien_mysql4>
         </models>
