@@ -46,7 +46,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit extends Mage_Adminhtml_Block_Widget
     {    	
         if( Mage::registry('docgia_data') && Mage::registry('docgia_data')->getId() ) {
         	$arrDetail = Mage::registry('docgia_data')->getData();
-            return Mage::helper('thuvien')->__("Sửa thông tin Đọc giả'%s'", $this->htmlEscape($arrDetail['HoVaTen']));
+            return Mage::helper('thuvien')->__("Sửa thông tin Đọc giả '%s' ", $this->htmlEscape($arrDetail['HoVaTen']));
         } else {
             return Mage::helper('thuvien')->__('Thêm Độc giả');
         }

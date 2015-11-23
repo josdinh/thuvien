@@ -20,12 +20,26 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tabs extends Mage_Adminhtml_Block_W
       ));
 
       if($this->getRequest()->getParam('id')) {
+
           $this->addTab('lephi_section', array(
               'label' => Mage::helper('thuvien')->__('Lệ phí'),
               'title' => Mage::helper('thuvien')->__('Lệ phí'),
               'content' => $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_lephi_form')->toHtml() .
                                             $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_lephi_grid')->toHtml(),
           ));
+
+          $this->addTab('muon_section', array(
+              'label' => Mage::helper('thuvien')->__('Mượn'),
+              'title' => Mage::helper('thuvien')->__('Mượn'),
+              'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_muon_grid')->toHtml(),
+          ));
+
+          $this->addTab('tra_section', array(
+              'label' => Mage::helper('thuvien')->__('Trả'),
+              'title' => Mage::helper('thuvien')->__('Trả'),
+              'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_tra_grid')->toHtml(),
+          ));
+
       }
 
       return parent::_beforeToHtml();
