@@ -13,14 +13,15 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Grid extends Mage_Adminhtml_Block_Widge
 
   protected function _prepareCollection()
   {
+	  //echo get_class(Mage::getModel('thuvien/tacphamcom'));die;
       $collection = Mage::getModel('thuvien/tacphamcom')->getCollection();
       $this->setCollection($collection);
-	  Zend_debug::dump($collection->getData());
+	  //Zend_debug::dump($collection->getData());
       return parent::_prepareCollection();
   }
 
   protected function _prepareColumns()
-  { return;
+  { 
       $this->addColumn('MaTpCom', array(
           'header'    => Mage::helper('thuvien')->__('Mã Tác Phẩm'),
           'align'     =>'left',
@@ -29,61 +30,27 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Grid extends Mage_Adminhtml_Block_Widge
       ));
 
       $this->addColumn('tentacpham', array(
-          'header'    => Mage::helper('thuvien')->__('Họ và Tên'),
+          'header'    => Mage::helper('thuvien')->__('Tên tác phẩm'),
           'align'     =>'left',
           'width'     => '50px',
           'index'     => 'TenTacPham',
       ));
 
-      $this->addColumn('NamSinh', array(
-          'header'    => Mage::helper('thuvien')->__('Năm Sinh'),
+      $this->addColumn('PhuThem', array(
+          'header'    => Mage::helper('thuvien')->__('Phụ Thêm'),
           'align'     =>'left',
           'width'     => '50px',
-          'index'     => 'NamSinh',
+          'index'     => 'PhuThem',
       ));
 
-      $this->addColumn('DienThoai', array(
-          'header'    => Mage::helper('thuvien')->__('Điện Thoại'),
+      $this->addColumn('Tomluoc', array(
+          'header'    => Mage::helper('thuvien')->__('Tóm lược'),
           'align'     =>'left',
           'width'     => '50px',
-          'index'     => 'DienThoai',
+          'index'     => 'Tomluoc',
       ));
 
-      $this->addColumn('Email', array(
-          'header'    => Mage::helper('thuvien')->__('Email'),
-          'align'     =>'left',
-          'width'     => '50px',
-          'index'     => 'Email',
-      ));
-
-      $this->addColumn('DiaChi2', array(
-          'header'    => Mage::helper('thuvien')->__('Ph.-Quận'),
-          'align'     =>'left',
-          'width'     => '50px',
-          'index'     => 'DiaChi2',
-      ));
-
-/*
-
-         $this->addColumn('action',
-             array(
-                 'header'    =>  Mage::helper('managelicense')->__('Action'),
-                 'width'     => '100',
-                 'type'      => 'action',
-                 'getter'    => 'getId',
-                 'actions'   => array(
-                     array(
-                         'caption'   => Mage::helper('managelicense')->__('Edit'),
-                         'url'       => array('base'=> '/edit'),
-                         'field'     => 'id'
-                     )
-                 ),
-                 'filter'    => false,
-                 'sortable'  => false,
-                 'index'     => 'stores',
-                 'is_system' => true,
-         ));
- */
+      
          $this->addExportType('*exportCsv', Mage::helper('thuvien')->__('CSV'));
          $this->addExportType('*exportXml', Mage::helper('thuvien')->__('XML'));
 

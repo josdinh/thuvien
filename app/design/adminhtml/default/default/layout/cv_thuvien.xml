@@ -11,5 +11,10 @@
              <action method="addItem"><type>skin_js</type><name>js/docgia.js</name></action>
         </reference>
     </thuvien_adminhtml_docgia_edit>
-
+	
+	<thuvien_adminhtml_tacpham_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_tacpham" name="tacpham" />
+        </reference>
+    </thuvien_adminhtml_tacpham_index>
 </layout>

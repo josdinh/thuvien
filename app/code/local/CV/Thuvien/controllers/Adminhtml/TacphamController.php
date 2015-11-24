@@ -9,7 +9,7 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
 		return $this;
 	}
  
-	public function indexAction() { echo 'adfasdfad';
+	public function indexAction() {
 		$this->_initAction()
 			->renderLayout();
 	}
