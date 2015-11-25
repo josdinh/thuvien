@@ -66,10 +66,15 @@
                         <action>thuvien/adminhtml_thuvien</action>
                     </items>
                     <items1 module="thuvien">
-                        <title>Độc giả</title>
+                        <title>Quản lý độc giả</title>
                         <sort_order>1</sort_order>
                         <action>thuvien/adminhtml_docgia</action>
                     </items1>
+					<items2 module="thuvien">
+                        <title>Quản lý tác phẩm</title>
+                        <sort_order>3</sort_order>
+                        <action>thuvien/adminhtml_tacpham</action>
+                    </items2>
                 </children>
             </thuvien>
             <muonsach module="thuvien">
