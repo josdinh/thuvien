@@ -57,7 +57,7 @@
     <adminhtml>
         <menu>
             <thuvien module="thuvien">
-            <title>Quan ly thu vien</title>
+            <title>Quản lý thư viện</title>
             <sort_order>68</sort_order>
                 <children>
                     <items module="thuvien">
@@ -72,6 +72,17 @@
                     </items1>
                 </children>
             </thuvien>
+            <muonsach module="thuvien">
+                <title>Mượn-Trả</title>
+                <sort_order>69</sort_order>
+                <action>thuvien/adminhtml_muontra</action>
+            </muonsach>
+
+            <muonsach module="thuvien">
+                <title>Mượn-Trả</title>
+                <sort_order>69</sort_order>
+                <action>thuvien/adminhtml_muontra</action>
+            </muonsach>
         </menu>
         <acl>
             <resources>

@@ -81,6 +81,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Tra_Grid extends Mage_Adminhtml
             'index'     => 'SoNgayTre',
         ));
 
+
         return parent::_prepareColumns();
     }
 

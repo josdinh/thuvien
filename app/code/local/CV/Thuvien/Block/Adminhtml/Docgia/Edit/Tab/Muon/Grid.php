@@ -78,6 +78,14 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Muon_Grid extends Mage_Adminhtm
             'index'     => 'SoNgayTre',
         ));
 
+        $this->addColumn('MaTaichanh', array(
+            'header'    => Mage::helper('thuvien')->__('Trả sách'),
+            'align'     =>'center',
+            'index'     => 'MaTaichanh',
+            'width' =>"10%",
+            'renderer' => 'thuvien/adminhtml_docgia_edit_tab_muon_renderer_tra',
+        ));
+
         return parent::_prepareColumns();
     }
 

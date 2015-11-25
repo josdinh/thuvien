@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>thuvien/style.css</name></action>
+        </reference>
+    </default>
     <thuvien_adminhtml_docgia_index>
         <reference name="content">
             <block type="thuvien/adminhtml_docgia" name="docgia" />
@@ -8,8 +13,18 @@
 
     <thuvien_adminhtml_docgia_edit>
         <reference name="head">
-             <action method="addItem"><type>skin_js</type><name>js/docgia.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/docgia.js</name></action>
         </reference>
     </thuvien_adminhtml_docgia_edit>
+
+    <thuvien_adminhtml_muontra_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/muontra.js</name></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="muon.tra" template="thuvien/muontra/form.phtml"/>
+        </reference>
+    </thuvien_adminhtml_muontra_index>
+
 
 </layout>

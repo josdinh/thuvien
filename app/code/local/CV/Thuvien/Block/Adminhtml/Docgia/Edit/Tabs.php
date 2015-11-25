@@ -31,7 +31,8 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tabs extends Mage_Adminhtml_Block_W
           $this->addTab('muon_section', array(
               'label' => Mage::helper('thuvien')->__('Mượn'),
               'title' => Mage::helper('thuvien')->__('Mượn'),
-              'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_muon_grid')->toHtml(),
+              'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_muon_form')->toHtml().
+                            $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_muon_grid')->toHtml(),
           ));
 
           $this->addTab('tra_section', array(

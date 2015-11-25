@@ -18,6 +18,18 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit extends Mage_Adminhtml_Block_Widget
             'onclick'   => 'saveAndContinueEdit()',
             'class'     => 'save',
         ), -100);
+
+        $this->_addButton('muonsach', array(
+            'label'     => Mage::helper('adminhtml')->__('Mượn thêm sách'),
+            'onclick'   => 'saveAndContinueEdit()',
+            'class'     => 'save',
+        ), -100);
+
+        $this->_addButton('tra', array(
+            'label'     => Mage::helper('adminhtml')->__('Trả sách'),
+            'onclick'   => 'saveAndContinueEdit()',
+            'class'     => 'save',
+        ), -100);
         
         /* $this->_addButton('rendkey', array(
             'label'     => Mage::helper('adminhtml')->__('Rend key'),

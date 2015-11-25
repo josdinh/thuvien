@@ -1,0 +1,29 @@
+.block-muon-tra {
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+}
+.block-muon-tra input{
+    line-height: 35px;
+    border:1px solid gray;
+    text-align: center;
+    height: 35px;
+    font-size: 14px;
+    font-weight: 400;
+}
+.block-muon-tra h1 {
+    margin-bottom: 25px;
+}
+.block-muon-tra ul{
+    margin-top: 25px;
+    text-align: left;
+}
+.block-muon-tra li:first-child{
+    text-decoration: underline;
+}
+.block-muon-tra li{
+    clear: both;
+}
+.block-muon-tra li em{
+    color: red;
+}
