@@ -19,17 +19,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit extends Mage_Adminhtml_Block_Widget
             'class'     => 'save',
         ), -100);
 
-        $this->_addButton('muonsach', array(
-            'label'     => Mage::helper('adminhtml')->__('Mượn thêm sách'),
-            'onclick'   => 'saveAndContinueEdit()',
-            'class'     => 'save',
-        ), -100);
 
-        $this->_addButton('tra', array(
-            'label'     => Mage::helper('adminhtml')->__('Trả sách'),
-            'onclick'   => 'saveAndContinueEdit()',
-            'class'     => 'save',
-        ), -100);
         
         /* $this->_addButton('rendkey', array(
             'label'     => Mage::helper('adminhtml')->__('Rend key'),
@@ -58,7 +48,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit extends Mage_Adminhtml_Block_Widget
     {    	
         if( Mage::registry('docgia_data') && Mage::registry('docgia_data')->getId() ) {
         	$arrDetail = Mage::registry('docgia_data')->getData();
-            return Mage::helper('thuvien')->__("Sửa thông tin Đọc giả '%s' ", $this->htmlEscape($arrDetail['HoVaTen']));
+            return Mage::helper('thuvien')->__("Thông tin Đọc giả '%s' ", $this->htmlEscape($arrDetail['HoVaTen']));
         } else {
             return Mage::helper('thuvien')->__('Thêm Độc giả');
         }

@@ -7,7 +7,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Tra_Grid extends Mage_Adminhtml
     {
         parent::__construct();
         $this->setId('tratpGrid');
-        $this->setDefaultSort('MaTpPop');
+        $this->setDefaultSort('NgayMuon,NgayTra');
         $this->setDefaultDir('DESC');
         $this->setSaveParametersInSession(true);
     }
@@ -30,6 +30,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Tra_Grid extends Mage_Adminhtml
                                 ->where('NgayTra IS NOT NULL ');
 
         $collection->addFilterToMap('MaTpPop', 'main_table.MaTpPop');
+        $collection->setOrder("NgayMuon","DESC");
 
         $this->setCollection($collection);
         return parent::_prepareCollection();
