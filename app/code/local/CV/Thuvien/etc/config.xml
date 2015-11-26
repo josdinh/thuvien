@@ -60,11 +60,6 @@
             <title>Quản lý thư viện</title>
             <sort_order>68</sort_order>
                 <children>
-                    <items module="thuvien">
-                        <title>Tác phẩm</title>
-                        <sort_order>0</sort_order>
-                        <action>thuvien/adminhtml_thuvien</action>
-                    </items>
                     <items1 module="thuvien">
                         <title>Quản lý độc giả</title>
                         <sort_order>1</sort_order>
@@ -77,17 +72,27 @@
                     </items2>
                 </children>
             </thuvien>
-            <muonsach module="thuvien">
+            <muontrasach module="thuvien">
                 <title>Mượn-Trả</title>
                 <sort_order>69</sort_order>
                 <action>thuvien/adminhtml_muontra</action>
-            </muonsach>
-
-            <muonsach module="thuvien">
-                <title>Mượn-Trả</title>
+            </muontrasach>
+            <vanphong module="thuvien">
+                <title>Văn hòng</title>
                 <sort_order>69</sort_order>
-                <action>thuvien/adminhtml_muontra</action>
-            </muonsach>
+                <children>
+                    <items1 module="thuvien">
+                        <title>Quy định thư viện</title>
+                        <sort_order>1</sort_order>
+                        <action>thuvien/adminhtml_docgia</action>
+                    </items1>
+                    <items2 module="thuvien">
+                        <title>Dữ liệu định sẵn</title>
+                        <sort_order>3</sort_order>
+                        <action>thuvien/adminhtml_tacpham</action>
+                    </items2>
+                </children>
+            </vanphong>
         </menu>
         <acl>
             <resources>
