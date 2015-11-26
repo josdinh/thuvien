@@ -8,14 +8,14 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tabs extends Mage_Adminhtml_Block_W
       parent::__construct();
       $this->setId('docgia_tabs');
       $this->setDestElementId('edit_form');
-      $this->setTitle(Mage::helper('thuvien')->__('Sửa thông tin Đọc giả'));
+      $this->setTitle(Mage::helper('thuvien')->__('Thông tin Độc giả'));
   }
 
   protected function _beforeToHtml()
   {
       $this->addTab('form_section', array(
-          'label'     => Mage::helper('thuvien')->__('Thông tin Đọc giả'),
-          'title'     => Mage::helper('thuvien')->__('Thông tin Đọc giả'),
+          'label'     => Mage::helper('thuvien')->__('Thông tin Độc giả'),
+          'title'     => Mage::helper('thuvien')->__('Thông tin Độc giả'),
           'content'   => $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_form')->toHtml(),
       ));
 
@@ -39,6 +39,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tabs extends Mage_Adminhtml_Block_W
               'label' => Mage::helper('thuvien')->__('Trả'),
               'title' => Mage::helper('thuvien')->__('Trả'),
               'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_tra_grid')->toHtml(),
+              'ajax' =>true
           ));
 
       }

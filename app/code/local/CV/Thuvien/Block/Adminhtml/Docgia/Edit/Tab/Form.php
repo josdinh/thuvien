@@ -6,7 +6,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Form extends Mage_Adminhtml_Blo
   {
       $form = new Varien_Data_Form();
       $this->setForm($form);
-      $fieldset = $form->addFieldset('docgia_form', array('legend'=>Mage::helper('thuvien')->__('Thông tin Đọc giả')));
+      $fieldset = $form->addFieldset('docgia_form', array('legend'=>Mage::helper('thuvien')->__('Thông tin cá nhân')));
 
       $listThanhPho = Mage::getModel('thuvien/thanhpho')->getCollection();
       $arrThanhPho = array();

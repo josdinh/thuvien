@@ -78,7 +78,7 @@
                 <action>thuvien/adminhtml_muontra</action>
             </muontrasach>
             <vanphong module="thuvien">
-                <title>Văn hòng</title>
+                <title>Văn Phòng</title>
                 <sort_order>69</sort_order>
                 <children>
                     <items1 module="thuvien">
