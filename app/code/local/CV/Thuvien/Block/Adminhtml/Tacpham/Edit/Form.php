@@ -1,6 +1,6 @@
 <?php
 
-class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
+class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
 {
   protected function _prepareForm()
   {

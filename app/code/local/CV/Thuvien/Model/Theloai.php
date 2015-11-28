@@ -7,4 +7,5 @@ class CV_Thuvien_Model_Theloai extends Mage_Core_Model_Abstract
         parent::_construct();
         $this->_init('thuvien/theloai');
     }
+
 }

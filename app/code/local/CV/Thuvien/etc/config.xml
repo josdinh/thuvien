@@ -152,6 +152,9 @@
                     <tppop>
                         <table>tptacphampop</table>
                     </tppop>
+					<theloai>
+                        <table>tplisttheloai</table>
+                    </theloai>
                 </entities>
             </thuvien_mysql4>
         </models>

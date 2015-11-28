@@ -17,7 +17,7 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
     public function editAction() {
 
         $id     = $this->getRequest()->getParam('id');
-        $model  = Mage::getModel('thuvien/docgia')->load($id);
+        $model  = Mage::getModel('thuvien/tpcom')->load($id);
 
         if ($model->getId() || $id == 0) {
             $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
@@ -25,23 +25,23 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
             if (!empty($data)) {
                 $model->setData($data);
             }
-
-            Mage::register('docgia_data', $model);
+			Zend_debug::dump($model->getData());
+            Mage::register('tacphamcom_data', $model);
 
             $this->loadLayout();
-            $this->_setActiveMenu('thuvien/docgia');
+            $this->_setActiveMenu('thuvien/tacpham');
 
-            $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Quản lý Đọc giả'), Mage::helper('adminhtml')->__('Quản lý Đọc giả'));
-            $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Đọc giả mới'), Mage::helper('adminhtml')->__('Đọc giả'));
+            $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Quản lý Tác Phẩm'), Mage::helper('adminhtml')->__('Quản lý Tác Phẩm'));
+            $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Tác Phẩm mới'), Mage::helper('adminhtml')->__('Tác Phẩm'));
 
             $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
 
-            $this->_addContent($this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit'))
-                ->_addLeft($this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tabs'));
+            $this->_addContent($this->getLayout()->createBlock('thuvien/adminhtml_tacpham_edit'))
+                ->_addLeft($this->getLayout()->createBlock('thuvien/adminhtml_tacpham_edit_tabs'));
 
             $this->renderLayout();
         } else {
-            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('thuvien')->__('Đọc giả này không tồn tại'));
+            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('thuvien')->__('Tác Phẩm này không tồn tại'));
             $this->_redirect('*/*/');
         }
     }
@@ -135,12 +135,12 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
     public function deleteAction() {
         if( $this->getRequest()->getParam('id') > 0 ) {
             try {
-                $model = Mage::getModel('thuvien/docgia');
+                $model = Mage::getModel('thuvien/tpcom');
 
                 $model->setId($this->getRequest()->getParam('id'))
                     ->delete();
 
-                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Độc giả đã được xóa thành công'));
+                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Tác Phẩm đã được xóa thành công'));
                 $this->_redirect('*/*/');
             } catch (Exception $e) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());

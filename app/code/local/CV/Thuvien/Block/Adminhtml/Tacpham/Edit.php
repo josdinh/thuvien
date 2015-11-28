@@ -17,14 +17,7 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit extends Mage_Adminhtml_Block_Widge
             'label'     => Mage::helper('adminhtml')->__('Lưu và ở lại trang này'),
             'onclick'   => 'saveAndContinueEdit()',
             'class'     => 'save',
-        ), -100);
-        
-        /* $this->_addButton('rendkey', array(
-            'label'     => Mage::helper('adminhtml')->__('Rend key'),
-            'onclick'   => 'rendkey()',            
-        ), -100);
-        */
-
+        ), -100); 
         $this->_formScripts[] = "
             function toggleEditor() {
                 if (tinyMCE.getInstanceById('thuvien_content') == null) {
