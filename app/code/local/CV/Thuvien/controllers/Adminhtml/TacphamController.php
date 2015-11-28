@@ -25,7 +25,7 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
             if (!empty($data)) {
                 $model->setData($data);
             }
-			Zend_debug::dump($model->getData());
+			/* Zend_debug::dump($model->getData()); */
             Mage::register('tacphamcom_data', $model);
 
             $this->loadLayout();

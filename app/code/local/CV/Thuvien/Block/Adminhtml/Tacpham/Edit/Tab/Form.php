@@ -53,11 +53,13 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Form extends Mage_Adminhtml_Bl
           'required' => true,
           'name' => 'MaSachBo'
       ));
-
-      $fieldset->addField('MaNgonNgu','text',array(
+	  $ngonngu=Mage::helper('thuvien')->getDSNgonngu();
+	  //Zend_debug::dump($ngonngu);
+      $fieldset->addField('MaNgonNgu','select',array(
           'label' => Mage::helper('thuvien')->__('Ngôn ngữ'),          
           'required' => true,
-          'name' => 'MaNgonNgu'
+          'name' => 'MaNgonNgu',
+		  'values'=>$ngonngu,  
       ));
 
       $fieldset->addField('ISBN','text',array(

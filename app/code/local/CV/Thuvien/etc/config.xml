@@ -155,6 +155,9 @@
 					<theloai>
                         <table>tplisttheloai</table>
                     </theloai>
+					<ngonngu>
+                        <table>tpngonngu</table>
+                    </ngonngu>
                 </entities>
             </thuvien_mysql4>
         </models>
