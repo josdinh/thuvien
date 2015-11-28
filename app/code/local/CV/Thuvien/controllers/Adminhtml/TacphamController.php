@@ -53,7 +53,7 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
 
     public function saveAction() {
         if ($data = $this->getRequest()->getPost()) {
-            zend_debug::dump($data);
+            //Zend_debug::dump($data);die;
 
             if(isset($_FILES['Hinh']['name']) && $_FILES['Hinh']['name'] != '') {
                 try {
@@ -86,7 +86,7 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
                 unset( $data['Hinh'] );
             }
 
-            $model = Mage::getModel('thuvien/docgia');
+            $model = Mage::getModel('thuvien/tpcom');
             $model->setData($data)
                   ->setId($this->getRequest()->getParam('id'));
 

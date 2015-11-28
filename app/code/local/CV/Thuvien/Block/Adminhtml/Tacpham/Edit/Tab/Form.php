@@ -17,19 +17,16 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Form extends Mage_Adminhtml_Bl
       ));
       
       $fieldset->addField('NguyenTac','text',array(
-      	'label' => Mage::helper('thuvien')->__('Nguyên tác'),      	
-      	'required' => true,
+      	'label' => Mage::helper('thuvien')->__('Nguyên tác'),
       	'name' => 'NguyenTac'
       ));
 		
 	  $fieldset->addField('PhuThem','text',array(
-      	'label' => Mage::helper('thuvien')->__('Phụ đề'),      	
-      	'required' => true,
+      	'label' => Mage::helper('thuvien')->__('Phụ đề'),
       	'name' => 'ThuThem'
       ));
 	  $fieldset->addField('TomLuoc','textarea',array(
-      	'label' => Mage::helper('thuvien')->__('Tóm lược'),      	
-      	'required' => true,
+      	'label' => Mage::helper('thuvien')->__('Tóm lược'),
       	'name' => 'TomLuoc'
       ));
 	  $theloai=Mage::helper('thuvien')->getDSTheLoai();
@@ -43,14 +40,12 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Form extends Mage_Adminhtml_Bl
           'name'      => 'MaDDC',          
       ));
       $fieldset->addField('TapSo','text',array(
-          'label' => Mage::helper('thuvien')->__('Tập số'),
-          'class' => 'required-entry',          
+          'label' => Mage::helper('thuvien')->__('Tập số'),                   
           'name' => 'TapSo'
       ));
 
       $fieldset->addField('MaSachBo','text',array(
-          'label' => Mage::helper('thuvien')->__('Sách bộ'),          
-          'required' => true,
+          'label' => Mage::helper('thuvien')->__('Sách bộ'),
           'name' => 'MaSachBo'
       ));
 	  $ngonngu=Mage::helper('thuvien')->getDSNgonngu();
@@ -63,8 +58,7 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Form extends Mage_Adminhtml_Bl
       ));
 
       $fieldset->addField('ISBN','text',array(
-          'label' => Mage::helper('thuvien')->__('ISBN-ISSN'),          
-          'required' => true,
+          'label' => Mage::helper('thuvien')->__('ISBN-ISSN'),
           'name' => 'ISBN'
       ));
       if ( Mage::getSingleton('adminhtml/session')->getDocgiaData() )
