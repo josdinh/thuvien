@@ -158,6 +158,12 @@
 					<ngonngu>
                         <table>tpngonngu</table>
                     </ngonngu>
+					<sachbo>
+                        <table>tplistsachbo</table>
+                    </sachbo>
+					<tacphampop>
+                        <table>tptacphampop</table>
+                    </tacphampop>
                 </entities>
             </thuvien_mysql4>
         </models>

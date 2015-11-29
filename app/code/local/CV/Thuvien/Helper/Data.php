@@ -2,6 +2,11 @@
 
 class CV_Thuvien_Helper_Data extends Mage_Core_Helper_Abstract
 {
+	
+	
+	
+	
+	/*Get the data value for select box */
 	public function getDSTheLoai(){		
       $collection = Mage::getModel('thuvien/theloai')->getCollection();	  
       $theloai = array();
@@ -21,5 +26,15 @@ class CV_Thuvien_Helper_Data extends Mage_Core_Helper_Abstract
           }
       }
 	  return $ngonngu;
+	}
+	public function getDSSachbo(){		
+      $collection = Mage::getModel('thuvien/sachbo')->getCollection();	  
+      $sachbo = array();
+      if($collection->getSize()) {
+          foreach($collection as $key=>$value) {
+              $sachbo[$value['MaSachBo']] = $value['SachBo'];
+          }
+      }
+	  return $sachbo;
 	}
 }

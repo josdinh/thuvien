@@ -43,10 +43,11 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Form extends Mage_Adminhtml_Bl
           'label' => Mage::helper('thuvien')->__('Tập số'),                   
           'name' => 'TapSo'
       ));
-
-      $fieldset->addField('MaSachBo','text',array(
+		$sachbo=Mage::helper('thuvien')->getDSSachbo();
+      $fieldset->addField('MaSachBo','select',array(
           'label' => Mage::helper('thuvien')->__('Sách bộ'),
-          'name' => 'MaSachBo'
+          'name' => 'MaSachBo',
+		  'values'=>$sachbo,  
       ));
 	  $ngonngu=Mage::helper('thuvien')->getDSNgonngu();
 	  //Zend_debug::dump($ngonngu);
