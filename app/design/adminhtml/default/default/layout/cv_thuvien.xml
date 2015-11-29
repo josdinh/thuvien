@@ -34,11 +34,23 @@
         </reference>
     </thuvien_adminhtml_tacpham_index>
 
+    <thuvien_adminhtml_theloai_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_theloai" name="theloai" />
+        </reference>
+    </thuvien_adminhtml_theloai_index>
+
 
     <thuvien_adminhtml_quydinh_index>
         <reference name="content">
             <block type="thuvien/adminhtml_quydinh" name="quydinh" />
         </reference>
     </thuvien_adminhtml_quydinh_index>
+
+    <thuvien_adminhtml_ddc_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_ddc" name="ddc" />
+        </reference>
+    </thuvien_adminhtml_ddc_index>
 
 </layout>

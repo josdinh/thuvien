@@ -2,7 +2,7 @@
 <config>
     <modules>
         <CV_Thuvien>
-            <version>0.1.4</version>
+            <version>0.1.5</version>
         </CV_Thuvien>
     </modules>
     <frontend>
@@ -86,11 +86,69 @@
                         <sort_order>1</sort_order>
                         <action>thuvien/adminhtml_quydinh/</action>
                     </quydinh>
-                    <items2 module="thuvien">
+                    <dulieudinhsan module="thuvien">
                         <title>Dữ liệu định sẵn</title>
                         <sort_order>3</sort_order>
-                        <action>thuvien/adminhtml_tacpham</action>
-                    </items2>
+                       <children>
+                           <tacpham module="thuvien">
+                               <title>Tác phẩm</title>
+                               <sort_order>1</sort_order>
+                               <children>
+                                   <theloai module="thuvien">
+                                       <title>Thể loại</title>
+                                       <sort_order>1</sort_order>
+                                       <action>thuvien/adminhtml_theloai/</action>
+                                   </theloai>
+                                   <ddc module="thuvien">
+                                       <title>DDC</title>
+                                       <sort_order>2</sort_order>
+                                       <action>thuvien/adminhtml_ddc/</action>
+                                   </ddc>
+                                   <tacgia module="thuvien">
+                                       <title>Tác giả</title>
+                                       <sort_order>3</sort_order>
+                                       <action>thuvien/adminhtml_tacgia/</action>
+                                   </tacgia>
+                                   <dichgia module="thuvien">
+                                       <title>Dịch giả</title>
+                                       <sort_order>4</sort_order>
+                                       <action>thuvien/adminhtml_dichgia/</action>
+                                   </dichgia>
+                                   <sachbo module="thuvien">
+                                       <title>Sách bộ</title>
+                                       <sort_order>5</sort_order>
+                                       <action>thuvien/adminhtml_sachbo/</action>
+                                   </sachbo>
+                                   <nhaxuatban module="thuvien">
+                                       <title>Nhà Xuất Bản</title>
+                                       <sort_order>6</sort_order>
+                                       <action>thuvien/adminhtml_nhaxuatban/</action>
+                                   </nhaxuatban>
+                                   <khosach module="thuvien">
+                                       <title>Kho sách</title>
+                                       <sort_order>7</sort_order>
+                                       <action>thuvien/adminhtml_khosach/</action>
+                                   </khosach>
+                                   <hientrang module="thuvien">
+                                       <title>Hiện trạng</title>
+                                       <sort_order>8</sort_order>
+                                       <action>thuvien/adminhtml_hientrang/</action>
+                                   </hientrang>
+                                   <tinhtrang module="thuvien">
+                                       <title>Tình trạng</title>
+                                       <sort_order>9</sort_order>
+                                       <action>thuvien/adminhtml_tinhtrang/</action>
+                                   </tinhtrang>
+                                   <ngonngu module="thuvien">
+                                       <title>Ngôn ngữ</title>
+                                       <sort_order>10</sort_order>
+                                       <action>thuvien/adminhtml_ngonngu/</action>
+                                   </ngonngu>
+                               </children>
+
+                           </tacpham>
+                       </children>
+                    </dulieudinhsan>
                 </children>
             </vanphong>
         </menu>
@@ -161,6 +219,9 @@
 					<theloai>
                         <table>tplisttheloai</table>
                     </theloai>
+                    <ddc>
+                        <table>tpddc</table>
+                    </ddc>
 					<ngonngu>
                         <table>tpngonngu</table>
                     </ngonngu>
