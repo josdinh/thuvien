@@ -3,6 +3,7 @@
     <default>
         <reference name="head">
             <action method="addItem"><type>skin_css</type><name>thuvien/style.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/thuvien.js</name></action>
         </reference>
     </default>
     <thuvien_adminhtml_docgia_index>
@@ -32,5 +33,24 @@
             <block type="thuvien/adminhtml_tacpham" name="tacpham" />
         </reference>
     </thuvien_adminhtml_tacpham_index>
+
+    <thuvien_adminhtml_theloai_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_theloai" name="theloai" />
+        </reference>
+    </thuvien_adminhtml_theloai_index>
+
+
+    <thuvien_adminhtml_quydinh_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_quydinh" name="quydinh" />
+        </reference>
+    </thuvien_adminhtml_quydinh_index>
+
+    <thuvien_adminhtml_ddc_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_ddc" name="ddc" />
+        </reference>
+    </thuvien_adminhtml_ddc_index>
 
 </layout>

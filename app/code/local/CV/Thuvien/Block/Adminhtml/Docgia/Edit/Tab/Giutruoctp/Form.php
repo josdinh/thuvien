@@ -1,15 +1,15 @@
 <?php
 
-class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Muon_Form extends Mage_Adminhtml_Block_Widget_Form
+class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Giutruoctp_Form extends Mage_Adminhtml_Block_Widget_Form
 {
-  protected function _prepareForm()
+  /*protected function _prepareForm()
   {
       $form = new Varien_Data_Form();
       $this->setForm($form);
-      $fieldset = $form->addFieldset('docgia_muon_form', array('legend'=>Mage::helper('thuvien')->__('Mượn thêm Tác phẩm')));
+      $fieldset = $form->addFieldset('docgia_muon_form', array('legend'=>Mage::helper('thuvien')->__('Giữ trước tác phẩm')));
       $maDocGia = $this->getRequest()->getParam('id');
       $fieldset->addField('MaSach','text',array(
-          'label' => Mage::helper('thuvien')->__('Mã Tác phẩm'),
+          'label' => Mage::helper('thuvien')->__('Mã Sách'),
           'name' => 'SoTien',
           'style' => 'width:150px'
       ));
@@ -44,5 +44,5 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Muon_Form extends Mage_Adminhtm
 
     private function expiredDates() {
         return "d-M-yyyy";//Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
-    }
+    }*/
 }
