@@ -53,8 +53,6 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
 
     public function saveAction() {
         if ($data = $this->getRequest()->getPost()) {
-            zend_debug::dump($data);
-
             if(isset($_FILES['Hinh']['name']) && $_FILES['Hinh']['name'] != '') {
                 try {
 

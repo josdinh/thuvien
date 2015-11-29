@@ -2,7 +2,7 @@
 <config>
     <modules>
         <CV_Thuvien>
-            <version>0.1.3</version>
+            <version>0.1.4</version>
         </CV_Thuvien>
     </modules>
     <frontend>
@@ -81,11 +81,11 @@
                 <title>Văn Phòng</title>
                 <sort_order>69</sort_order>
                 <children>
-                    <items1 module="thuvien">
+                    <quydinh module="thuvien">
                         <title>Quy định thư viện</title>
                         <sort_order>1</sort_order>
-                        <action>thuvien/adminhtml_docgia</action>
-                    </items1>
+                        <action>thuvien/adminhtml_quydinh/</action>
+                    </quydinh>
                     <items2 module="thuvien">
                         <title>Dữ liệu định sẵn</title>
                         <sort_order>3</sort_order>
@@ -145,6 +145,12 @@
                     <dgmuontra>
                         <table>dgmuontra</table>
                     </dgmuontra>
+                    <!-- Het phan doc gia-->
+                    <!-- Van Phong thu vien -->
+                    <tvquydinh>
+                        <table>tvquydinh</table>
+                    </tvquydinh>
+                    <!-- Phan Van Phong -->
                     <!-- tacpham -->
                     <tpcom>
                         <table>tptacphamcom</table>
@@ -158,6 +164,8 @@
 					<ngonngu>
                         <table>tpngonngu</table>
                     </ngonngu>
+
+
                 </entities>
             </thuvien_mysql4>
         </models>
