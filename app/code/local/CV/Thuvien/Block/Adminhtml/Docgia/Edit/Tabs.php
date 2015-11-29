@@ -35,12 +35,34 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tabs extends Mage_Adminhtml_Block_W
                             $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_muon_grid')->toHtml(),
           ));
 
+         /* $this->addTab('muonlientv_section', array(
+              'label' => Mage::helper('thuvien')->__('Mượn liên Tv.'),
+              'title' => Mage::helper('thuvien')->__('Mượn liên Tv.'),
+              'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_muonlientv_form')->toHtml().
+                  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_muonlientv_grid')->toHtml(),
+          ));*/
+
           $this->addTab('tra_section', array(
               'label' => Mage::helper('thuvien')->__('Trả'),
               'title' => Mage::helper('thuvien')->__('Trả'),
-              'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_tra_grid')->toHtml(),
-              'ajax' =>true
+              'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_tra_form')->toHtml().
+                            $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_tra_grid')->toHtml(),
+
           ));
+
+        /*  $this->addTab('giutruoctp_section', array(
+              'label' => Mage::helper('thuvien')->__('Giữ trước tác phẩm'),
+              'title' => Mage::helper('thuvien')->__('Giữ trước tác phẩm'),
+              'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_giutruoctp_form')->toHtml().
+                  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_giutruoctp_grid')->toHtml(),
+          ));
+
+          $this->addTab('giutruoctp_section', array(
+              'label' => Mage::helper('thuvien')->__('Giữ trước Tp. liên Tv.'),
+              'title' => Mage::helper('thuvien')->__('Giữ trước Tp. liên Tv.'),
+              'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_giutruoctplientv_form')->toHtml().
+                  $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_giutruoctplientv_grid')->toHtml(),
+          ));*/
 
       }
 

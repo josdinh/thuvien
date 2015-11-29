@@ -6,7 +6,7 @@ Event.observe(window, 'load', function() {
     $$('#barcode-input').invoke('observe','keypress',function(e) {
         if (e.keyCode == 13) {
             e.preventDefault();
-           var mavach = $('barcode-input').value;
+           var mavach = $('barcode-input').value.trim();
 
             if(mavach.length == 10) {
                 // muon sach dua vao ma doc gia
@@ -31,7 +31,7 @@ Event.observe(window, 'load', function() {
 
     function muonsach(madocgia) {
         $('loading-mask').show();
-        var urlchitietdocgia = $('chitietdocgiaUrl').value;
+        var urlchitietdocgia = $('chitietdocgiaUrl').value.trim();
         new Ajax.Request(urlchitietdocgia, {
             method: 'post',
             parameters: {"madocgia":madocgia},
@@ -54,28 +54,22 @@ Event.observe(window, 'load', function() {
 
     function tratp(matp) {
         $('loading-mask').show();
-        new Ajax.Request(link_extendtrial, {
+        var urlTraSach = $('urlTrasach').value.trim();
+        new Ajax.Request(urlTraSach, {
             method: 'post',
-            parameters: {"module":modulename},
+            parameters: {"matp":matp},
             onSuccess: function(data){
-                if(data.responseText)
-                {
-                    $$('#row_mcore_mwmodule_'+modulename+' .value ')[0].update(data.responseText);
-                    window.location.reload();
+                var messageResult = data.responseText;
+                if (messageResult=='0') {
+                    alert('Mã tác phẩm không bạn trả tồn tại. Vui lòng kiểm tra lại!');
+                }
+                else {
+                    alert(messageResult);
                 }
                 $('loading-mask').hide();
             },
             onFailure: function(data){
-                var notice= $('mw_mcore_notice_'+modulename)|| "";
-                if(notice.length == 0)
-                {
-
-                    $$('#row_mcore_mwmodule_'+modulename+' .value')[0].insert('<div id="mw_mcore_notice_'+modulename+'" class="mw_mcore_notice">Error occured when trying to extend trial.</div>');
-                }
-                else
-                {
-                    $('mw_mcore_notice_'+modulename+'').innerHTML = 'Error occured when trying to extend trial.';
-                }
+               alert("Có lỗi xảy ra khi trả tác phẩm. Vui lòng kiểm tra lại!")
                 $('loading-mask').hide();
             }
         });

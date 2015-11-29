@@ -3,7 +3,7 @@ class CV_Thuvien_IndexController extends Mage_Core_Controller_Front_Action
 {
   public function testAction()
   {
-      $maDocGia = "0000000451"; //$this->getRequest()->getParam('madocgia');
+     /* $maDocGia = "0000000451"; //$this->getRequest()->getParam('madocgia');
       $urlDetail = "0";
       if ($maDocGia) {
           $maDocGia = str_replace("617BC","00000",$maDocGia);
@@ -14,7 +14,8 @@ class CV_Thuvien_IndexController extends Mage_Core_Controller_Front_Action
               $urlDetail = Mage::helper("adminhtml")->getUrl("thuvien/adminhtml_docgia/edit",array('id'=>$docgiaDetail->getData('MaDocGia')));
           }
       }
-      echo $urlDetail;
+      echo $urlDetail;*/
+      echo date('Y-m-d');
   }
 
   public function traTpAjaxAction()
