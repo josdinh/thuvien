@@ -37,4 +37,15 @@ class CV_Thuvien_Helper_Data extends Mage_Core_Helper_Abstract
       }
 	  return $sachbo;
 	}
+	
+	public function getDSHientrang(){		
+      $collection = Mage::getModel('thuvien/hientrang')->getCollection();	  
+      $hientrang = array();
+      if($collection->getSize()) {
+          foreach($collection as $key=>$value) {
+              $hientrang[$value['MaHienTrang']] = $value['HienTrang'];
+          }
+      }
+	  return $hientrang;
+	}
 }

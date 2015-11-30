@@ -230,7 +230,10 @@
                     </sachbo>
 					<tacphampop>
                         <table>tptacphampop</table>
-                    </tacphampop>
+                    </tacphampop>					
+					<hientrang>
+                        <table>tphientrang</table>
+                    </hientrang>
                 </entities>
             </thuvien_mysql4>
         </models>

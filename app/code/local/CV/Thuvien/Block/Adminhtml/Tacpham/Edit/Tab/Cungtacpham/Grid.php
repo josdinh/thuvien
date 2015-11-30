@@ -18,8 +18,12 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Cungtacpham_Grid extends Mage_
 			$collection = Mage::getModel('thuvien/tacphampop')->getCollection();
 			$collection->getSelect()->join( array('tpcom'=> 'tptacphamcom'), 'tpcom.MaTpCom = main_table.MaTpCom', array('tpcom.TenTacPham','MaTpCom'))
 						->join( array('tpnhaxb'=> 'tpnhaxb'), 'tpnhaxb.MaNhaXB = main_table.MaNhaXB', array('tpnhaxb.NhaXB'))
+						->join( array('tphientrang'=> 'tphientrang'), 'tphientrang.MaHienTrang = main_table.MaHienTrang', array('tphientrang.HienTrang'))
+						->join( array('tptinhtrang'=> 'tptinhtrang'), 'tptinhtrang.MaTinhTrang = main_table.MaTinhTrang', array('tptinhtrang.TinhTrang'))
+						->join( array('tplistkhosach'=> 'tplistkhosach'), 'tplistkhosach.MaKhoSach = main_table.MaKhoSach', array('tplistkhosach.KhoSach'))
 						->where('main_table.MaTpCom = "'.Mage::registry('tacphamcom_data')->getData('MaTpCom').'"')
 			;
+			/* Zend_debug::dump($collection->getData()); */
 			$this->setCollection($collection);			
 			return parent::_prepareCollection();
 		}
@@ -27,7 +31,13 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Cungtacpham_Grid extends Mage_
 
     protected function _prepareColumns()
     {
+		$this->addColumn('TMaTpPop', array(
+            'header'    => Mage::helper('thuvien')->__('ID'),
+            'align'     =>'left',
+            'width'     => '50px',
+            'index'     => 'MaTpPop',
 
+        ));
         $this->addColumn('TMaTpPop', array(
             'header'    => Mage::helper('thuvien')->__('Mã tác phẩm'),
             'align'     =>'left',
@@ -36,42 +46,77 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Cungtacpham_Grid extends Mage_
 
         ));
 
-        $this->addColumn('TTenTacPham', array(
-            'header'    => Mage::helper('thuvien')->__('Nhan đề'),
+        $this->addColumn('BanSo', array(
+            'header'    => Mage::helper('thuvien')->__('Bản'),
             'align'     =>'left',
             'width'     => '50px',
-            'index'     => 'TenTacPham',
+            'index'     => 'BanSo',
         ));
 
-        $this->addColumn('TNgayMuon', array(
-            'header'    => Mage::helper('thuvien')->__('Ngày Mượn'),
+        $this->addColumn('NhaXB', array(
+            'header'    => Mage::helper('thuvien')->__('Nhà Xuất Bản'),
             'align'     =>'right',
             'width'     => '50px',
-            'index'     => 'NgayMuon',
+            'index'     => 'NhaXB',
         ));
 
-        $this->addColumn('TNgayTra', array(
-            'header'    => Mage::helper('thuvien')->__('Ngày Trả'),
+        $this->addColumn('NamXuatBan', array(
+            'header'    => Mage::helper('thuvien')->__('Năm'),
             'align'     =>'right',
             'width'     => '50px',
-            'index'     => 'NgayTra',
+            'index'     => 'NamXuatBan',
         ));
-
-        $this->addColumn('THanTra', array(
-            'header'    => Mage::helper('thuvien')->__('Kỳ hạn'),
+		
+        $this->addColumn('SoTrang', array(
+            'header'    => Mage::helper('thuvien')->__('Trang'),
             'align'     =>'left',
             'width'     => '50px',
-            'index'     => 'HanTra',
+            'index'     => 'SoTrang',
         ));
 
-       $this->addColumn('TSoNgayTre', array(
-            'header'    => Mage::helper('thuvien')->__('Số ngày trễ'),
+       $this->addColumn('Kho', array(
+            'header'    => Mage::helper('thuvien')->__('Khổ'),
             'align'     =>'right',
             'width'     => '50px',
-            'index'     => 'SoNgayTre',
+            'index'     => 'Kho',
+        ));
+		
+		 $this->addColumn('NgayNhap', array(
+            'header'    => Mage::helper('thuvien')->__('Ngày Nhập'),
+            'align'     =>'right',
+            'width'     => '50px',
+            'index'     => 'NgayNhap',
+        ));
+		
+		 $this->addColumn('GiaTien', array(
+            'header'    => Mage::helper('thuvien')->__('Giá Tiền'),
+            'align'     =>'right',
+            'width'     => '50px',
+            'index'     => 'GiaTien',
+        ));
+		
+		 $this->addColumn('TinhTrang', array(
+            'header'    => Mage::helper('thuvien')->__('Tình Trạng'),
+            'align'     =>'right',
+            'width'     => '50px',
+            'index'     => 'TinhTrang',
+        ));
+		
+		 $this->addColumn('HienTrang', array(
+            'header'    => Mage::helper('thuvien')->__('Tác Phẩm'),
+            'align'     =>'right',
+            'width'     => '50px',
+            'index'     => 'HienTrang',			
         ));
 
+		 $this->addColumn('KhoSach', array(
+            'header'    => Mage::helper('thuvien')->__('Kho'),
+            'align'     =>'right',
+            'width'     => '50px',
+            'index'     => 'KhoSach',
+        ));
 
+		
         return parent::_prepareColumns();
     }
 

@@ -35,7 +35,7 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Form extends Mage_Adminhtml_Bl
           'name'      => 'MaLoaiTacPham',
 		  'values'=>$theloai,          
       ));
-	 $fieldset->addField('MaDDC', 'select', array(
+	 $fieldset->addField('MaDDC', 'text', array(
           'label'     => Mage::helper('thuvien')->__('Mã DCC'),
           'name'      => 'MaDDC',          
       ));
@@ -64,8 +64,8 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Form extends Mage_Adminhtml_Bl
       ));
       if ( Mage::getSingleton('adminhtml/session')->getDocgiaData() )
       {
-          $form->setValues(Mage::getSingleton('adminhtml/session')->getDocgiaData());
-          Mage::getSingleton('adminhtml/session')->setDocgiaData(null);
+          $form->setValues(Mage::getSingleton('adminhtml/session')->getTacphamcomData());
+          Mage::getSingleton('adminhtml/session')->setTacphamcomData(null);
       } elseif ( Mage::registry('tacphamcom_data') ) {
           $form->setValues(Mage::registry('tacphamcom_data')->getData());
       }

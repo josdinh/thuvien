@@ -18,11 +18,16 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tabs extends Mage_Adminhtml_Block_
           'title'     => Mage::helper('thuvien')->__('Thông tin Tác Phẩm'),
           'content'   => $this->getLayout()->createBlock('thuvien/adminhtml_tacpham_edit_tab_form')->toHtml(),
       ));
-	
+	  $this->addTab('tacgia_section', array(
+          'label'     => Mage::helper('thuvien')->__('Thông tin Tác Giả'),
+          'title'     => Mage::helper('thuvien')->__('Thông tin Tác Giả'),
+          'content'   => $this->getLayout()->createBlock('thuvien/adminhtml_tacpham_edit_tab_tacgia')->toHtml(),
+      ));
 	  
 	  $this->addTab('cungtacpham_section', array(
               'label' => Mage::helper('thuvien')->__('Cùng một tác phẩm'),
               'title' => Mage::helper('thuvien')->__('Cùng một tác phẩm'),
+              //'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_tacpham_edit_tab_form')->toHtml().$this->getLayout()->createBlock('thuvien/adminhtml_tacpham_edit_tab_cungtacpham_grid')->toHtml(),
               'content' =>  $this->getLayout()->createBlock('thuvien/adminhtml_tacpham_edit_tab_cungtacpham_grid')->toHtml(),
               'ajax' =>true
           ));

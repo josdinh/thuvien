@@ -33,6 +33,12 @@
             <block type="thuvien/adminhtml_tacpham" name="tacpham" />
         </reference>
     </thuvien_adminhtml_tacpham_index>
+	
+	<thuvien_adminhtml_tacpham_edit>
+        <!-- <reference name="content">
+            <block type="thuvien/adminhtml_tacpham_edit_tab_form" name="tacpham" />
+        </reference> -->
+    </thuvien_adminhtml_tacpham_edit>
 
     <thuvien_adminhtml_theloai_index>
         <reference name="content">
