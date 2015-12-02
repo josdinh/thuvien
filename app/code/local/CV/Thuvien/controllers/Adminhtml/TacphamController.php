@@ -4,7 +4,7 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
 
 	protected function _initAction() {
 		$this->loadLayout()
-			->_setActiveMenu('thuvien/tacpham')
+			->_setActiveMenu('tacpham')
 			->_addBreadcrumb(Mage::helper('adminhtml')->__('Quản lý Tác phẩm'), Mage::helper('adminhtml')->__('Quản lý Tác phẩm'));
 		return $this;
 	}
@@ -29,7 +29,7 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
             Mage::register('tacphamcom_data', $model);
 
             $this->loadLayout();
-            $this->_setActiveMenu('thuvien/tacpham');
+            $this->_setActiveMenu('tacpham');
 
             $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Quản lý Tác Phẩm'), Mage::helper('adminhtml')->__('Quản lý Tác Phẩm'));
             $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Tác Phẩm mới'), Mage::helper('adminhtml')->__('Tác Phẩm'));

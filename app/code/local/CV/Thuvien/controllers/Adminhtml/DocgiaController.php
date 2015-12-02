@@ -4,7 +4,7 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
 
 	protected function _initAction() {
 		$this->loadLayout()
-			->_setActiveMenu('thuvien/docgia')
+			->_setActiveMenu('thuvien')
 			->_addBreadcrumb(Mage::helper('adminhtml')->__('Quản lý Độc Giả'), Mage::helper('adminhtml')->__('Quản lý Độc Giả'));
 		return $this;
 	}
@@ -29,7 +29,7 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
             Mage::register('docgia_data', $model);
 
             $this->loadLayout();
-            $this->_setActiveMenu('thuvien/docgia');
+            $this->_setActiveMenu('thuvien');
 
             $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Quản lý Đọc giả'), Mage::helper('adminhtml')->__('Quản lý Đọc giả'));
             $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Đọc giả mới'), Mage::helper('adminhtml')->__('Đọc giả'));

@@ -1,23 +1,23 @@
 <?php
-class  CV_Thuvien_Adminhtml_DdcController extends Mage_Adminhtml_Controller_Action
+class  CV_Thuvien_Adminhtml_TacgiaController extends Mage_Adminhtml_Controller_Action
 {
 
-	protected function _initAction() {
-		$this->loadLayout()
-			->_setActiveMenu('vanphong')
-			->_addBreadcrumb(Mage::helper('adminhtml')->__('Quy định Thư Viện'), Mage::helper('adminhtml')->__('Quy định Thư Viện'));
-		return $this;
-	}
- 
-	public function indexAction() {
-		$this->_initAction()
-			->renderLayout();
-	}
+    protected function _initAction() {
+        $this->loadLayout()
+            ->_setActiveMenu('vanphong')
+            ->_addBreadcrumb(Mage::helper('adminhtml')->__('Quy định Thư Viện'), Mage::helper('adminhtml')->__('Quy định Thư Viện'));
+        return $this;
+    }
+
+    public function indexAction() {
+        $this->_initAction()
+            ->renderLayout();
+    }
 
     public function editAction() {
 
         $id     = $this->getRequest()->getParam('id');
-        $model  = Mage::getModel('thuvien/ddc')->load($id);
+        $model  = Mage::getModel('thuvien/tacgia')->load($id);
 
         if ($model->getId() || $id == 0) {
             $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
@@ -26,22 +26,22 @@ class  CV_Thuvien_Adminhtml_DdcController extends Mage_Adminhtml_Controller_Acti
                 $model->setData($data);
             }
 
-            Mage::register('ddc_data', $model);
+            Mage::register('tacgia_data', $model);
 
             $this->loadLayout();
             $this->_setActiveMenu('vanphong');
 
-            $this->_addBreadcrumb(Mage::helper('adminhtml')->__('DDC tác phẩm'), Mage::helper('adminhtml')->__('DDC loại tác phẩmn'));
-            $this->_addBreadcrumb(Mage::helper('adminhtml')->__('DDC mới tác phẩm'), Mage::helper('adminhtml')->__('DDC tác phẩm mới'));
+            $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Tác giả'), Mage::helper('adminhtml')->__('Tác giả'));
+            $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Tác giả mới'), Mage::helper('adminhtml')->__('Tác giả mới'));
 
             $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
 
-            $this->_addContent($this->getLayout()->createBlock('thuvien/adminhtml_ddc_edit'))
-                ->_addLeft($this->getLayout()->createBlock('thuvien/adminhtml_ddc_edit_tabs'));
+            $this->_addContent($this->getLayout()->createBlock('thuvien/adminhtml_tacgia_edit'))
+                ->_addLeft($this->getLayout()->createBlock('thuvien/adminhtml_tacgia_edit_tabs'));
 
             $this->renderLayout();
         } else {
-            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('thuvien')->__('Không tồn tại DDC tác phẩm'));
+            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('thuvien')->__('Không tồn tại tác giả'));
             $this->_redirect('*/*/');
         }
     }
@@ -54,9 +54,9 @@ class  CV_Thuvien_Adminhtml_DdcController extends Mage_Adminhtml_Controller_Acti
     public function saveAction() {
         if ($data = $this->getRequest()->getPost()) {
 
-            $model = Mage::getModel('thuvien/ddc');
+            $model = Mage::getModel('thuvien/tacgia');
             $model->setData($data)
-                  ->setId($this->getRequest()->getParam('id'));
+                ->setId($this->getRequest()->getParam('id'));
 
             try {
                 if ($model->getCreatedTime == NULL || $model->getUpdateTime() == NULL) {
@@ -80,7 +80,7 @@ class  CV_Thuvien_Adminhtml_DdcController extends Mage_Adminhtml_Controller_Acti
                 }
 
                 $model->save();
-                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('thuvien')->__('DDC tác phẩm đã được lưu trữ thành công.'));
+                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('thuvien')->__('Thông tin tác giả đã được lưu trữ thành công.'));
                 Mage::getSingleton('adminhtml/session')->setFormData(false);
 
                 if ($this->getRequest()->getParam('back')) {
@@ -96,41 +96,41 @@ class  CV_Thuvien_Adminhtml_DdcController extends Mage_Adminhtml_Controller_Acti
                 return;
             }
         }
-        Mage::getSingleton('adminhtml/session')->addError(Mage::helper('thuvien')->__('Không lưu được DDC.'));
+        Mage::getSingleton('adminhtml/session')->addError(Mage::helper('thuvien')->__('Không lưu được thông tin tác giả.'));
         $this->_redirect('*/*/');
     }
 
     public function deleteAction() {
         if( $this->getRequest()->getParam('id') > 0 ) {
             try {
-                $model = Mage::getModel('thuvien/ddc');
+                $model = Mage::getModel('thuvien/tacgia');
 
                 $model->setId($this->getRequest()->getParam('id'))
                     ->delete();
 
-                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('DDC tác phẩm đã được xóa thành công'));
+                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Tác giả đã được xóa thành công'));
                 $this->_redirect('**');
             } catch (Exception $e) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
-                $this->_redirect('**edit', array('id' => $this->getRequest()->getParam('id')));
+                $this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
             }
         }
         $this->_redirect('*/*/');
     }
 
     public function massDeleteAction() {
-        $theloaiIds = $this->getRequest()->getParam('ddc');
+        $theloaiIds = $this->getRequest()->getParam('tacgia');
         if(!is_array($theloaiIds)) {
-            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Vui lòng chọn DDC tác phẩm'));
+            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Vui lòng tác giả'));
         } else {
             try {
                 foreach ($theloaiIds as $theloaiid) {
-                    $theloai = Mage::getModel('thuvien/ddc')->load($theloaiid);
+                    $theloai = Mage::getModel('thuvien/tacgia')->load($theloaiid);
                     $theloai->delete();
                 }
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('adminhtml')->__(
-                        'Có %d DDC đã được xóa thành công', count($theloaiIds)
+                        'Có %d tác giả đã được xóa thành công', count($theloaiIds)
                     )
                 );
             } catch (Exception $e) {
@@ -142,8 +142,8 @@ class  CV_Thuvien_Adminhtml_DdcController extends Mage_Adminhtml_Controller_Acti
 
     public function exportCsvAction()
     {
-        $fileName   = 'ddc.csv';
-        $content    = $this->getLayout()->createBlock('thuvien/adminhtml_ddc_grid')
+        $fileName   = 'tacgia.csv';
+        $content    = $this->getLayout()->createBlock('thuvien/adminhtml_tacgia_grid')
             ->getCsv();
 
         $this->_sendUploadResponse($fileName, $content);
@@ -151,8 +151,8 @@ class  CV_Thuvien_Adminhtml_DdcController extends Mage_Adminhtml_Controller_Acti
 
     public function exportXmlAction()
     {
-        $fileName   = 'ddc.xml';
-        $content    = $this->getLayout()->createBlock('thuvien/adminhtml_ddc_grid')
+        $fileName   = 'tacgia.xml';
+        $content    = $this->getLayout()->createBlock('thuvien/adminhtml_tacgia_grid')
             ->getXml();
 
         $this->_sendUploadResponse($fileName, $content);

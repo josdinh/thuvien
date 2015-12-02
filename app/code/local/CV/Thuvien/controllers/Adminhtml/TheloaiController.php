@@ -4,7 +4,7 @@ class  CV_Thuvien_Adminhtml_TheloaiController extends Mage_Adminhtml_Controller_
 
 	protected function _initAction() {
 		$this->loadLayout()
-			->_setActiveMenu('thuvien/vanphong')
+			->_setActiveMenu('vanphong')
 			->_addBreadcrumb(Mage::helper('adminhtml')->__('Quy định Thư Viện'), Mage::helper('adminhtml')->__('Quy định Thư Viện'));
 		return $this;
 	}
@@ -29,7 +29,7 @@ class  CV_Thuvien_Adminhtml_TheloaiController extends Mage_Adminhtml_Controller_
             Mage::register('theloai_data', $model);
 
             $this->loadLayout();
-            $this->_setActiveMenu('thuvien/vanphong');
+            $this->_setActiveMenu('vanphong');
 
             $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Thể loại tác phẩm'), Mage::helper('adminhtml')->__('Thể loại tác phẩmn'));
             $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Thể loại tác phẩm mới'), Mage::helper('adminhtml')->__('Thể loại tác phẩm mới'));
@@ -109,10 +109,10 @@ class  CV_Thuvien_Adminhtml_TheloaiController extends Mage_Adminhtml_Controller_
                     ->delete();
 
                 Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Thể loại tác phẩm đã được xóa thành công'));
-                $this->_redirect('**');
+                $this->_redirect('*/*/');
             } catch (Exception $e) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
-                $this->_redirect('**edit', array('id' => $this->getRequest()->getParam('id')));
+                $this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
             }
         }
         $this->_redirect('*/*/');

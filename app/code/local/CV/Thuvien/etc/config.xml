@@ -222,7 +222,10 @@
                     <ddc>
                         <table>tpddc</table>
                     </ddc>
-					<ngonngu>
+					<tacgia>
+                        <table>tplisttacgia</table>
+					</tacgia>
+                    <ngonngu>
                         <table>tpngonngu</table>
                     </ngonngu>
 					<sachbo>
@@ -234,6 +237,8 @@
 					<hientrang>
                         <table>tphientrang</table>
                     </hientrang>
+
+
                 </entities>
             </thuvien_mysql4>
         </models>

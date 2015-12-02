@@ -59,4 +59,10 @@
         </reference>
     </thuvien_adminhtml_ddc_index>
 
+    <thuvien_adminhtml_tacgia_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_tacgia" name="tacgia"/>
+        </reference>
+    </thuvien_adminhtml_tacgia_index>
+
 </layout>

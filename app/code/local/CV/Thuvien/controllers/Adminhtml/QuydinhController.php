@@ -4,7 +4,7 @@ class  CV_Thuvien_Adminhtml_QuydinhController extends Mage_Adminhtml_Controller_
 
 	protected function _initAction() {
 		$this->loadLayout()
-			->_setActiveMenu('thuvien/vanphong')
+			->_setActiveMenu('vanphong')
 			->_addBreadcrumb(Mage::helper('adminhtml')->__('Quy định Thư Viện'), Mage::helper('adminhtml')->__('Quy định Thư Viện'));
 		return $this;
 	}
@@ -29,7 +29,7 @@ class  CV_Thuvien_Adminhtml_QuydinhController extends Mage_Adminhtml_Controller_
             Mage::register('quydinh_data', $model);
 
             $this->loadLayout();
-            $this->_setActiveMenu('thuvien/vanphong');
+            $this->_setActiveMenu('vanphong');
 
             $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Quy định Thự Viện'), Mage::helper('adminhtml')->__('Quy định Thự Viện'));
             $this->_addBreadcrumb(Mage::helper('adminhtml')->__('Quy định Thự Viện mới'), Mage::helper('adminhtml')->__('Quy định Thự Viện mới'));
