@@ -21,10 +21,10 @@ class CV_Thuvien_Block_Adminhtml_Tacgia_Edit_Tab_Form extends Mage_Adminhtml_Blo
           'name' => 'KyHieuTg'
       ));
 
-      if ( Mage::getSingleton('adminhtml/session')->getTheloaiData() )
+      if ( Mage::getSingleton('adminhtml/session')->getTacgiaData() )
       {
-          $form->setValues(Mage::getSingleton('adminhtml/session')->getTheloaiData());
-          Mage::getSingleton('adminhtml/session')->setTheloaiData(null);
+          $form->setValues(Mage::getSingleton('adminhtml/session')->getTacgiaData());
+          Mage::getSingleton('adminhtml/session')->setTacgiaData(null);
       } elseif ( Mage::registry('tacgia_data') ) {
           $form->setValues(Mage::registry('tacgia_data')->getData());
       }

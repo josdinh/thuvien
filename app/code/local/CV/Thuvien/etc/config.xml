@@ -2,7 +2,7 @@
 <config>
     <modules>
         <CV_Thuvien>
-            <version>0.1.5</version>
+            <version>0.1.6</version>
         </CV_Thuvien>
     </modules>
     <frontend>
@@ -119,11 +119,11 @@
                                        <sort_order>5</sort_order>
                                        <action>thuvien/adminhtml_sachbo/</action>
                                    </sachbo>
-                                   <nhaxuatban module="thuvien">
+                                   <nhaxb module="thuvien">
                                        <title>Nhà Xuất Bản</title>
                                        <sort_order>6</sort_order>
-                                       <action>thuvien/adminhtml_nhaxuatban/</action>
-                                   </nhaxuatban>
+                                       <action>thuvien/adminhtml_nhaxb/</action>
+                                   </nhaxb>
                                    <khosach module="thuvien">
                                        <title>Kho sách</title>
                                        <sort_order>7</sort_order>
@@ -225,20 +225,30 @@
 					<tacgia>
                         <table>tplisttacgia</table>
 					</tacgia>
+                    <dichgia>
+                        <table>tplistdichgia</table>
+                    </dichgia>
                     <ngonngu>
                         <table>tpngonngu</table>
                     </ngonngu>
 					<sachbo>
-                        <table>tplistsachbo</table>
+                    <table>tplistsachbo</table>
                     </sachbo>
+                    <nhaxb>
+                        <table>tpnhaxb</table>
+                    </nhaxb>
+                    <khosach>
+                        <table>tplistkhosach</table>
+                    </khosach>
 					<tacphampop>
                         <table>tptacphampop</table>
                     </tacphampop>					
 					<hientrang>
                         <table>tphientrang</table>
                     </hientrang>
-
-
+                    <tinhtrang>
+                        <table>tptinhtrang</table>
+                    </tinhtrang>
                 </entities>
             </thuvien_mysql4>
         </models>

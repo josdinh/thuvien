@@ -65,4 +65,28 @@
         </reference>
     </thuvien_adminhtml_tacgia_index>
 
+    <thuvien_adminhtml_dichgia_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_dichgia" name="dichgia"/>
+        </reference>
+    </thuvien_adminhtml_dichgia_index>
+
+    <thuvien_adminhtml_sachbo_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_sachbo" name="sachbo"/>
+        </reference>
+    </thuvien_adminhtml_sachbo_index>
+
+    <thuvien_adminhtml_nhaxb_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_nhaxb" name="nhaxb"/>
+        </reference>
+    </thuvien_adminhtml_nhaxb_index>
+
+    <thuvien_adminhtml_khosach_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_khosach" name="khosach"/>
+        </reference>
+    </thuvien_adminhtml_khosach_index>
+
 </layout>
