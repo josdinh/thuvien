@@ -5,7 +5,7 @@ if (count($listSachBo)) :
     foreach($listSachBo as $sachBo) :
         ?>
         <li>
-            <a href="<?php echo $sachBo['MaSachBo'] ?>"><?php echo  $sachBo['SachBo']; ?></a>
+            <a href="<?php echo Mage::getUrl('thuvien/catalog_category/view',array('id'=>$sachBo['MaSachBo'])); ?>"><?php echo  $sachBo['SachBo']; ?></a>
         </li>
         <?php
     endforeach;

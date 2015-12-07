@@ -1,0 +1,14 @@
+
+<div id="product_all">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+    <?php
+    $collection = $this->getCollection();
+    zend_debug::dump($collection->getData());
+    ?>
+
+    <div id="pe_kajaxproduct_toolbar">
+        <?php echo $this->getToolbarHtml(); ?>
+    </div>
+
+</div>

@@ -3,9 +3,6 @@
 class CV_Thuvien_Helper_Data extends Mage_Core_Helper_Abstract
 {
 	
-	
-	
-	
 	/*Get the data value for select box */
 	public function getDSTheLoai(){		
       $collection = Mage::getModel('thuvien/theloai')->getCollection();	  
@@ -17,6 +14,7 @@ class CV_Thuvien_Helper_Data extends Mage_Core_Helper_Abstract
       }
 	  return $theloai;
 	}
+
 	public function getDSNgonngu(){		
       $collection = Mage::getModel('thuvien/ngonngu')->getCollection();	  
       $ngonngu = array();
@@ -27,6 +25,7 @@ class CV_Thuvien_Helper_Data extends Mage_Core_Helper_Abstract
       }
 	  return $ngonngu;
 	}
+    
 	public function getDSSachbo(){		
       $collection = Mage::getModel('thuvien/sachbo')->getCollection();	  
       $sachbo = array();

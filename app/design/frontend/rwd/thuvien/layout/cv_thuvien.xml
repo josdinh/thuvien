@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <thuvien_catalog_category_view>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="thuvien/catalog_category_view" name="catalog.category" template="catalog/category/view.phtml" />
+        </reference>
+        <remove name="breadcrumbs"/>
+    </thuvien_catalog_category_view>
+</layout>
