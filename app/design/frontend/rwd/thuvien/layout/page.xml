@@ -40,7 +40,7 @@
                 <action method="addJs"><script>lib/jquery/noconflict.js</script></action>
                 <action method="addJs"><script>lib/ccard.js</script></action>
                 <action method="addJs"><script>prototype/validation.js</script></action>
-                <!--
+
                 <action method="addJs"><script>scriptaculous/builder.js</script></action>
                 <action method="addJs"><script>scriptaculous/effects.js</script></action>
                 <action method="addJs"><script>scriptaculous/dragdrop.js</script></action>
@@ -49,7 +49,7 @@
                 <action method="addJs"><script>varien/js.js</script></action>
                 <action method="addJs"><script>varien/form.js</script></action>
                 <action method="addJs"><script>mage/translate.js</script></action>
-                <action method="addJs"><script>mage/cookies.js</script></action>-->
+                <action method="addJs"><script>mage/cookies.js</script></action>
 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
@@ -57,7 +57,7 @@
                 <action method="removeItem"><type>skin_js</type><name>js/ie6.js</name></action>
 
                 <!-- Add vendor dependencies -->
-             <!--   <action method="addItem"><type>skin_js</type><name>js/lib/modernizr.custom.min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/modernizr.custom.min.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/lib/selectivizr.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/lib/matchMedia.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/lib/matchMedia.addListener.js</name></action>
@@ -69,7 +69,13 @@
                 <action method="addItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
                 <action method="addLinkRel"><rel>stylesheet</rel><href>//fonts.googleapis.com/css?family=Raleway:300,400,500,700,600</href></action>
                 <action method="addItem"><type>skin_js</type><name>js/minicart.js</name></action>
--->
+                <action method="addItem"><type>skin_js</type><name>js/thuvien_common.js</name></action>
+
+                <action method="addItem"><type>skin_js</type><name>jcarousellite/js/jquery.jcarousellite.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>jcarousellite/js/jquery.easing-1.3.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>jcarousellite/js/jquery.mousewheel-3.1.12.js</name></action>
+                <action method="addItem"><type>skin_css</type><name>jcarousellite/style/style-demo.css</name></action>
+
             <!--    &lt;!&ndash; Add stylesheets with no media queries for use in IE 8 and below &ndash;&gt;
                 <action method="addItem"><type>skin_css</type><name>css/styles-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
                 <action method="addItem"><type>skin_css</type><name>css/madisonisland-ie8.css</name><params/><if><![CDATA[ (lte IE 8) & (!IEMobile)]]></if></action>
@@ -133,20 +139,10 @@
             </block>
 
             <block type="page/html_footer" name="footer" as="footer" template="page/html/footer.phtml">
-                <block type="page/html_wrapper" name="bottom.container" as="bottomContainer" translate="label">
-                    <label>Page Footer</label>
-                    <action method="setElementClass"><value>bottom-container</value></action>
-                </block>
-                <block type="page/switch" name="store_switcher" as="store_switcher" after="*" template="page/switch/stores.phtml"/>
-                <block type="page/template_links" name="footer_links" as="footer_links" template="page/template/links.phtml">
-                    <action method="setTitle"><title>Quick Links</title></action>
-                </block>
-                <block type="page/template_links" name="footer_links2" as="footer_links2" template="page/template/links.phtml">
-                    <action method="setTitle"><title>Account</title></action>
-                </block>
+
                 <!-- This static block can be created and populated in admin. The footer_links cms block can be used as a starting point. -->
-                <!--<block type="cms/block" name="footer_social_links">
-                    <action method="setBlockId"><block_id>footer_social_links</block_id></action>
+               <!-- <block type="cms/block" name="footer.block">
+                    <action method="setBlockId"><block_id>footer</block_id></action>
                 </block>-->
             </block>
 

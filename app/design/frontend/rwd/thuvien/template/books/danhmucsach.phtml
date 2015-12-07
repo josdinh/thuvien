@@ -1,0 +1,13 @@
+<?php
+$listSachBo = $this->getListSachBo()->getData();
+if (count($listSachBo)) :
+    echo "<ul id='menu'>";
+    foreach($listSachBo as $sachBo) :
+        ?>
+        <li>
+            <a href="<?php echo $sachBo['MaSachBo'] ?>"><?php echo  $sachBo['SachBo']; ?></a>
+        </li>
+        <?php
+    endforeach;
+    echo "</ul>";
+endif;

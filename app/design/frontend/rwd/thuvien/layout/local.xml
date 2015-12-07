@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="header">
+            <block type="thuvien/danhmucsach"  name="danhmucsach" as="danhmucsach" template="books/danhmucsach.phtml"/>
+        </reference>
+    </default>
+    <cms_index_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>bxslider/jquery.bxslider.min.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>bxslider/jquery.bxslider.css</name></action>
+        </reference>
+    </cms_index_index>
+</layout>
