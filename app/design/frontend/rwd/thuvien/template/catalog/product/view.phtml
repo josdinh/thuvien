@@ -1,0 +1,72 @@
+<div class="product-view" xmlns="http://www.w3.org/1999/html">
+   <?php
+        $product = $this->getCurrentProductCom();
+        $productPop = $this->getCurrentProductPop();
+   ?>
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="">Trang chủ</a></li>
+            <!--<li><a href="">Học viện Đa Minh</a></li>-->
+            <li><a href=""><?php echo $product->getData('TenTacPham') ?></a></li>
+        </ul>
+    </div>
+    <div class="image-main-info">
+        <div class="hatp">
+            <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>"  width="250px"/>
+        </div>
+        <div class="main-info">
+            <div class="tentp"><?php echo $product->getData('TenTacPham') ?></div>
+            <?php if($product->getData('NguyenTac')): ?>
+                <div class="reg-content"><?php echo $product->getData('NguyenTac') ?></div>
+            <?php endif; ?>
+            <?php if($product->getData('PhuThem')): ?>
+                <div class="reg-content"><?php echo $product->getData('PhuThem') ?></div>
+            <?php endif; ?>
+            <div class="reg-content">
+                <span>Tác giả: </span><span><?php echo $product->getTacgia() ;?></span>
+            </div>
+            <?php if($product->getDichGia()): ?>
+                <div class="reg-content">
+                    <span>Dịch giả: </span><span><?php echo $product->getDichGia() ;?></span>
+                </div>
+            <?php endif; ?>
+            <?php if($product->getNhaXB()): ?>
+                <div class="reg-content">
+                    <span>Nhà Xuất Bản: </span><span><?php echo $product->getNhaXB() ;?></span>
+                </div>
+            <?php endif; ?>
+            <?php if($product->getNgonNgu()): ?>
+                <div class="reg-content">
+                    <span>Ngôn Ngữ: </span><span><?php echo $product->getNgonNgu() ;?></span>
+                </div>
+            <?php endif; ?>
+            <?php if ($productPop->getData('SoTrang')) :?>
+                <div class="reg-content">
+                    <span>Số trang: </span><span><?php echo $productPop->getData('SoTrang') ;?></span>
+                </div>
+            <?php endif; ?>
+            <div class="reg-content">
+                <span>Tình Trạng: </span><span class="tinhtrang">
+                    <?php if($productPop->getData('MaTinhTrang')==1){
+                        echo "Hiện có";
+                    }
+                    else {
+                        echo "Đang mượn";
+                    }
+                    ?>
+                </span>
+            </div>
+            <?php  if($productPop->getData('MaTinhTrang')==1): ?>
+                <form action="<?php echo $this->getUrl('thuvien/catalog_product/muonsach/id/'.$productPop->getData('MaTpPop')) ?>" >
+                     <button type="submit" value="Mược sách" class="btn-muonsach">Mượn sách</button>
+                </form>
+            <?php endif; ?>
+
+        </div>
+    </div>
+    <div class="mucluc">
+    </div>
+    <div class="related-product">
+
+    </div>
+</div>

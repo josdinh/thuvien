@@ -70,12 +70,6 @@
     function muontp(muonurl,madocgia){
 
         var matp = $('MaSach').value.trim();
-        var hantra = $('HanTra').value.trim();
-        if (hantra.length==0 || hantra.length<8 ) {
-            alert("Hạn trả không hợp lệ. Vui lòng kiểm tra lại");
-            return;
-        }
-
         if(matp.length != 12) {
             alert("Mã tác phẩm không đúng. Vui lòng kiểm tra lại");
             return;
@@ -84,7 +78,7 @@
             $('loading-mask').show();
             new Ajax.Request(muonurl, {
                 method: 'post',
-                parameters: {"matp": matp, "madocgia": madocgia,"hantra":hantra},
+                parameters: {"matp": matp, "madocgia": madocgia},
                 onSuccess: function (data) {
 
                     var resultArr = JSON.parse(data.responseText);
@@ -151,7 +145,6 @@
 
     function clearFrmMuonTp() {
         $('MaSach').setValue("");
-        $('HanTra').setValue("");
     }
 
     function clearFrmTraTp()

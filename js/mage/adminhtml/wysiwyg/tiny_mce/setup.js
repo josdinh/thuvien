@@ -171,7 +171,7 @@ tinyMceWysiwygSetup.prototype =
 
     openFileBrowser: function(o) {
         var typeTitle;
-        var storeId = this.config.store_id !== null ? this.config.store_id : 0;
+        var storeId = this.config.store_id != null ? this.config.store_id : 0;
         var wUrl = this.config.files_browser_window_url +
                    'target_element_id/' + this.id + '/' +
                    'store/' + storeId + '/';

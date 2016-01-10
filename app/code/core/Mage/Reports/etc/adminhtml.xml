@@ -25,7 +25,7 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 -->
-<config>
+<!--<config>
     <menu>
         <report translate="title" module="reports">
             <title>Reports</title>
@@ -73,10 +73,10 @@
                             <title>Abandoned carts</title>
                             <action>adminhtml/report_shopcart/abandoned</action>
                         </abandoned>
-                        <!--<customer translate="title" module="reports">
+                        &lt;!&ndash;<customer translate="title" module="reports">
                             <title>Customers</title>
                             <action>adminhtml/report_shopcart/customer</action>
-                        </customer>-->
+                        </customer>&ndash;&gt;
                     </children>
                 </shopcart>
                 <products translate="title" module="reports">
@@ -256,4 +256,4 @@
             </admin>
         </resources>
     </acl>
-</config>
+</config>-->

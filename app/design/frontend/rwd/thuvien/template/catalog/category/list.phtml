@@ -1,0 +1,49 @@
+<?php
+    $collection = $this->getListDDC();
+    $firstText = "12";
+    $isOnpen = false;
+    if ($collection) :
+?>
+       <div class="category-list">
+            <?php if($this->getCurrentDDC()): ?>
+               <div class="title">
+                    <?php echo $this->getCurrentDDC()->getData('TenDDC'); ?>
+               </div>
+            <?php endif; ?>
+           <div class="list-ddc">
+               <?php foreach($collection as $ddc): ?>
+                   <?php
+                    $tenDDC = $ddc->getData('TenDDC');
+                    if(mb_substr($tenDDC,0,1,"utf-8") != $firstText ):
+                       $firstText = mb_substr($tenDDC,0,1,"utf-8");
+
+                   ?>
+                    <?php if($isOnpen): $isOnpen = false ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <?php endif ?>
+
+                   <div class="each-ddc">
+                       <div class="ddc-title"> <?php echo $firstText ?></div>
+                       <div class="ddc-content">
+                            <ul>
+                   <?php
+                   $isOnpen = true;
+                   endif;
+                   ?>
+                    <li><a href="<?php echo $this->getUrl('thuvien/catalog_category/view',array('id'=>$ddc->getData('MaDDC'))); ?>"><?php echo $ddc->getData('TenDDC') ?></a></li>
+                <?php endforeach; ?>
+
+                <?php if($isOnpen && $collection->getSize()):  ?>
+                        </ul>
+                    </div>
+                </div>
+                <?php endif ?>
+           </div>
+       </div>
+<?php else: ?>
+       <div>
+
+       </div>
+<?php endif; ?>

@@ -8,11 +8,20 @@ class CV_Thuvien_Block_Adminhtml_Quydinh_Edit_Tab_Form extends Mage_Adminhtml_Bl
       $this->setForm($form);
       $fieldset = $form->addFieldset('quydinh_form', array('legend'=>Mage::helper('thuvien')->__('Quy định Thư Viện')));
 
-      $fieldset->addField('VietTat','text',array(
+      $fieldset->addField('VietTat','hidden',array(
           'label' => Mage::helper('thuvien')->__('Viết Tắt'),
           'class' => 'required-entry',
           'required' => true,
           'name' => 'VietTat',
+          'readonly'=>'true',
+          'input' => 'hidden'
+      ));
+
+      $fieldset->addField('TvVietTat','text',array(
+          'label' => Mage::helper('thuvien')->__('Viết Tắt'),
+          'class' => 'required-entry',
+          'required' => true,
+          'name' => 'TvVietTat',
           'readonly'=>'true'
       ));
 
@@ -40,7 +49,7 @@ class CV_Thuvien_Block_Adminhtml_Quydinh_Edit_Tab_Form extends Mage_Adminhtml_Bl
       	'label' => Mage::helper('thuvien')->__('Phường-Quận'),
       	'name' => 'DiaChi2'
       ));
-	  $fieldset->addField('ThanhPho','textarea',array(
+	  $fieldset->addField('ThanhPho','text',array(
       	'label' => Mage::helper('thuvien')->__('Thành Phố'),
       	'name' => 'ThanhPho'
       ));
@@ -86,7 +95,7 @@ class CV_Thuvien_Block_Adminhtml_Quydinh_Edit_Tab_Form extends Mage_Adminhtml_Bl
       ));
 
       $fieldset->addField('TienLamThe', 'text', array(
-          'label'     => Mage::helper('thuvien')->__('tiền làm lại thẻ'),
+          'label'     => Mage::helper('thuvien')->__('Tiền làm lại thẻ'),
           'name'      => 'TienLamThe',
       ));
 

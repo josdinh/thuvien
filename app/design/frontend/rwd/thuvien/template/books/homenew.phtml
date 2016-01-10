@@ -1,93 +1,37 @@
+<?php
+$listNewBooks = $this->getListNewBooks();
 
+if ($listNewBooks->getSize()) :
+?>
 <div class="title">
-    <a class="a-left" href="">sách mới nhất</a>
+    <a class="a-left" href="">sách mới nhập</a>
     <a class="a-right" href="all"> &raquo; Tất cả</a>
 </div>
 <div class="home-books-content">
     <button class="prev-newbook">&nbsp;</button>
     <div class="newbook">
         <ul>
+            <?php foreach($listNewBooks as $book): ?>
+            <li>
+                <div class="">
+                    <a href="<?php echo Mage::getUrl('thuvien/catalog_product/view',array('id'=>$book->getData('MaTpCom'))) ?>"><img src="<?php echo $this->getImages($book->getData('Hinh')) ?>" title="<?php echo $book->getData('TenTacPham')?>">
+                    </a>
+                </div>
+                <div class="book-infor">
+                    <div class="prodouct-name">
+                        <a href="<?php echo Mage::getUrl('thuvien/catalog_product/view',array('id'=>$book->getData('MaTpCom'))) ?>" title="<?php echo $book->getData('TenTacPham')?>">
+                            <?php echo $book->getData('TenTacPham') ?>
+                        </a>
+                    </div>
 
-            <li>
-                <div class=""> <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>">
-                </div>
-                <div class="book-infor">
-                    <div class="prodouct-name"> Nhà Chỉ Kim </div>
-                    <div> Tác giả: <span class="tacgia"> Huy Cận </span></div>
+                    <?php if($book->getData('TapSo')): ?>
+                        <div>Tập số: <?php echo $book->getData('TapSo')?></div>
+                    <?php endif; ?>
+                    <div> Tác giả: <a href="<?php echo Mage::getUrl('thuvien/tacgia/listp',array('id'=>$book->getData('MaKyHieuTg'))) ?>"><span class="tacgia">  <?php echo $book->getTacGia(); ?> </span></a></div>
                 </div>
             </li>
-            <li>
-                <div class=""> <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>" >
-                </div>
-                <div class="book-infor">
-                    <div class="prodouct-name"> Nhà Chỉ Kim </div>
-                    <div> Tác giả: <span class="tacgia"> Huy Cận </span></div>
-                </div>
-            </li>
-            <li>
-                <div class=""> <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>" >
-                </div>
-                <div class="book-infor">
-                    <div class="prodouct-name"> Nhà Chỉ Kim </div>
-                    <div> Tác giả: <span class="tacgia"> Huy Cận </span></div>
-                </div>
-            </li>
-            <li>
-                <div class=""> <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>" >
-                </div>
-                <div class="book-infor">
-                    <div class="prodouct-name"> Nhà Chỉ Kim </div>
-                    <div> Tác giả: <span class="tacgia"> Huy Cận </span></div>
-                </div>
-            </li>
-            <li>
-                <div class=""> <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>">
-                </div>
-                <div class="book-infor">
-                    <div class="prodouct-name"> Nhà Chỉ Kim </div>
-                    <div> Tác giả: <span class="tacgia"> Huy Cận </span></div>
-                </div>
-            </li>
-            <li>
-                <div class=""> <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>" >
-                </div>
-                <div class="book-infor">
-                    <div class="prodouct-name"> Nhà Chỉ Kim </div>
-                    <div> Tác giả: <span class="tacgia"> Huy Cận </span></div>
-                </div>
-            </li>
-            <li>
-                <div class=""> <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>" >
-                </div>
-                <div class="book-infor">
-                    <div class="prodouct-name"> Nhà Chỉ Kim </div>
-                    <div> Tác giả: <span class="tacgia"> Huy Cận </span></div>
-                </div>
-            </li>
-            <li>
-                <div class=""> <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>" >
-                </div>
-                <div class="book-infor">
-                    <div class="prodouct-name"> Nhà Chỉ Kim </div>
-                    <div> Tác giả: <span class="tacgia"> Huy Cận </span></div>
-                </div>
-            </li>
-            <li>
-                <div class=""> <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>">
-                </div>
-                <div class="book-infor">
-                    <div class="prodouct-name"> Nhà Chỉ Kim </div>
-                    <div> Tác giả: <span class="tacgia"> Huy Cận </span></div>
-                </div>
-            </li>
-            <li>
-                <div class=""> <img src="<?php echo $this->getSkinUrl('images/demobooks/10022.jpg') ?>">
-                </div>
-                <div class="book-infor">
-                    <div class="prodouct-name"> Nhà Chỉ Kim </div>
-                    <div> Tác giả: <span class="tacgia"> Huy Cận </span></div>
-                </div>
-            </li>
+            <?php endforeach ?>
+
         </ul>
     </div>
     <button class="next-newbook">&nbsp;</button>
@@ -96,9 +40,10 @@
             jQuery(".newbook").jCarouselLite({
                  btnNext: ".next-newbook",
                  btnPrev: ".prev-newbook",
-                 scroll: 6,
-                 visible: 6
+                 scroll: 5,
+                 visible: 5
             });
         });
     </script>
 </div>
+<?php endif; ?>

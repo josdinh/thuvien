@@ -20,11 +20,20 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Grid extends Mage_Adminhtml_Block_Widget
 
   protected function _prepareColumns()
   {
-      $this->addColumn('MaDocGia', array(
+      $this->addColumn('MaDgTv', array(
           'header'    => Mage::helper('thuvien')->__('Mã Độc giả'),
           'align'     =>'left',
-          'width'     => '50px',
-          'index'     => 'MaDocGia',
+          'width'     => '5%',
+          'index' => 'MaDgTv',
+      ));
+
+
+      $this->addColumn('MaDgTvFront', array(
+          'header'    => Mage::helper('thuvien')->__('Mã Độc giả Thư viện'),
+          'align'     =>'left',
+          'width'     => '5%',
+          'index' => 'MaDgTv',
+          'renderer' => 'thuvien/adminhtml_docgia_renderer_madgfront',
       ));
 
       $this->addColumn('HoVaTen', array(

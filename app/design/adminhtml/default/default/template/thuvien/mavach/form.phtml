@@ -1,0 +1,21 @@
+<form  id="frm-mavach" method="post" action="<?php echo $this->getUrl("thuvien/adminhtml_mavach/process"); ?>">
+    <h2> Tạo mã vạch cho Tác phẩm</h2>
+    <table border="0">
+        <tr>
+            <td>Từ</td>
+            <td><input type="text" name="mv_from" class="input-text required-entry"/> </td>
+        </tr>
+        <tr>
+            <td>Đến</td><td><input type="text" name="mv_to" class="input-text" /> </td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit" name="submit_mavach">Tạo mã</button> </td>
+        </tr>
+    </table>
+    <input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+</form>
+<script type="text/javascript">
+    //<![CDATA[
+    var dataForm = new VarienForm('frm-mavach', true);
+    //]]>
+</script>

@@ -64,5 +64,9 @@ class CV_Thuvien_Block_Adminhtml_Dichgia_Grid extends Mage_Adminhtml_Block_Widge
         return $this;
     }
 
+    public function getGridUrl()
+    {
+        return $this->_getData('grid_url') ? $this->_getData('grid_url') : $this->getUrl('*/*/dichgiagrid', array('_current'=>true));
+    }
 
 }

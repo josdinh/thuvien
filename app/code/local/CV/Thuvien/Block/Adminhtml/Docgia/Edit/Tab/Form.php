@@ -15,6 +15,22 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Form extends Mage_Adminhtml_Blo
               $arrThanhPho[$value['ThanhPho']] = $value['TenTp'];
           }
       }
+      $fieldset->addField('MaDgTvShow','text',array(
+          'label' => Mage::helper('thuvien')->__('Mã độc giả thư viện'),
+          'class' => 'required-entry',
+          'required' => true,
+          'readonly' => true,
+          //'onchange'=>'rendkey()',
+          'name' => 'MaDgTvShow'
+      ));
+
+      $fieldset->addField('MaDgTv','hidden',array(
+          'label' => Mage::helper('thuvien')->__('Mã độc giả'),
+          'class' => 'required-entry',
+          'required' => true,
+          'readonly' => true,
+          'name' => 'MaDgTv'
+      ));
 
       $fieldset->addField('HoVaTen','text',array(
       	'label' => Mage::helper('thuvien')->__('Họ và Tên'),
@@ -95,6 +111,13 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Form extends Mage_Adminhtml_Blo
           'class' => 'required-entry',
           'required' => false,
           'name' => 'GhiChu'
+      ));
+
+      $fieldset->addField('MaTaiKhoan','text',array(
+          'label' => Mage::helper('thuvien')->__('Mã tài khoản'),
+          'readonly' => true,
+          'required' => false,
+          'name' => 'MaTaiKhoan'
       ));
 
       if ( Mage::getSingleton('adminhtml/session')->getDocgiaData() )

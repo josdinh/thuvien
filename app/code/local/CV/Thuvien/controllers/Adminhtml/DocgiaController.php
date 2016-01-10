@@ -47,7 +47,7 @@ class  CV_Thuvien_Adminhtml_DocgiaController extends Mage_Adminhtml_Controller_A
     }
 
     public function newAction() {
-        $this->_forward('edit');
+        $this->editAction();//_forward('edit');
 
     }
 

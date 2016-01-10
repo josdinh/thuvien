@@ -1,11 +1,11 @@
 <?php
-$listSachBo = $this->getListSachBo()->getData();
-if (count($listSachBo)) :
+$listDDC= $this->getListDDC()->getData();
+if (count($listDDC)) :
     echo "<ul id='menu'>";
-    foreach($listSachBo as $sachBo) :
+    foreach($listDDC as $ddc) :
         ?>
         <li>
-            <a href="<?php echo Mage::getUrl('thuvien/catalog_category/view',array('id'=>$sachBo['MaSachBo'])); ?>"><?php echo  $sachBo['SachBo']; ?></a>
+            <a href="<?php echo Mage::getUrl('thuvien/catalog_category/list',array('id'=>$ddc['DDC'])); ?>"><?php echo  $ddc['TenDDC']; ?></a>
         </li>
         <?php
     endforeach;

@@ -61,7 +61,7 @@ Event.observe(window, 'load', function() {
             onSuccess: function(data){
                 var messageResult = data.responseText;
                 if (messageResult=='0') {
-                    alert('Mã tác phẩm không bạn trả tồn tại. Vui lòng kiểm tra lại!');
+                    alert('Tác phẩm bạn trả không có trong danh sách tác phẩm được mượn. Vui lòng kiểm tra lại!');
                 }
                 else {
                     alert(messageResult);

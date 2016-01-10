@@ -17,7 +17,7 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
     public function editAction() {
 
         $id     = $this->getRequest()->getParam('id');
-        $model  = Mage::getModel('thuvien/tpcom')->load($id);
+        $model  = Mage::getModel('thuvien/tppop')->load($id);
 
         if ($model->getId() || $id == 0) {
             $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
@@ -26,7 +26,7 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
                 $model->setData($data);
             }
 			/* Zend_debug::dump($model->getData()); */
-            Mage::register('tacphamcom_data', $model);
+            Mage::register('tppop_data', $model);
 
             $this->loadLayout();
             $this->_setActiveMenu('tacpham');
@@ -47,46 +47,16 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
     }
 
     public function newAction() {
-        $this->_forward('edit');
-
+        $this->editAction();
     }
 
     public function saveAction() {
         if ($data = $this->getRequest()->getPost()) {
             //Zend_debug::dump($data);die;
 
-            if(isset($_FILES['Hinh']['name']) && $_FILES['Hinh']['name'] != '') {
-                try {
 
-                    /* Starting upload */
-                    $uploader = new Varien_File_Uploader('Hinh');
 
-                    // Any extention would work
-                    $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
-                    $uploader->setAllowRenameFiles(false);
-
-                    // Set the file upload mode
-                    // false -> get the file directly in the specified folder
-                    // true -> get the file in the product like folders
-                    //	(file.jpg will go in something like /media/f/i/file.jpg)
-                    $uploader->setFilesDispersion(false);
-
-                    // We set media as the upload dir
-                    $path = Mage::getBaseDir('media') . DS .'docgia'.DS;
-                    $uploader->save($path, $_FILES['Hinh']['name'] );
-
-                } catch (Exception $e) {
-
-                }
-
-                //this way the name is saved in DB
-                $data['Hinh'] = 'docgia/'.$_FILES['Hinh']['name'];
-            }
-            else {
-                unset( $data['Hinh'] );
-            }
-
-            $model = Mage::getModel('thuvien/tpcom');
+            $model = Mage::getModel('thuvien/tppop');
             $model->setData($data)
                   ->setId($this->getRequest()->getParam('id'));
 
@@ -95,24 +65,12 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
                     $model->setCreatedTime(now())
                         ->setUpdateTime(now());
 
-                    if($model->getStatus()==2)
-                    {
-                        $model->setActiveDate(now());
-                        $domain = $model->getMagentoUrl();
-                        $extension =  $model->getExtension();
-                        $rendkey = 	Mage::helper('thuvien')->getKey($extension,$domain);
-                        $model->setKeyActive($rendkey);
-                    }
-                    else
-                        $model->setKeyActive("");
-
-
                 } else {
                     $model->setUpdateTime(now());
                 }
 
                 $model->save();
-                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('thuvien')->__('Thông tin Độc giả đã được lưu thành công.'));
+                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('thuvien')->__('Thông tin tác phẩm đã được lưu thành công.'));
                 Mage::getSingleton('adminhtml/session')->setFormData(false);
 
                 if ($this->getRequest()->getParam('back')) {
@@ -128,14 +86,14 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
                 return;
             }
         }
-        Mage::getSingleton('adminhtml/session')->addError(Mage::helper('thuvien')->__('Không tìm thấy độc giả để lưu.'));
+        Mage::getSingleton('adminhtml/session')->addError(Mage::helper('thuvien')->__('Không tìm thấy tác phẩm để lưu.'));
         $this->_redirect('*/*/');
     }
 
     public function deleteAction() {
         if( $this->getRequest()->getParam('id') > 0 ) {
             try {
-                $model = Mage::getModel('thuvien/tpcom');
+                $model = Mage::getModel('thuvien/tppop');
 
                 $model->setId($this->getRequest()->getParam('id'))
                     ->delete();
@@ -151,18 +109,18 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
     }
 
     public function massDeleteAction() {
-        $docgiaIds = $this->getRequest()->getParam('docgia');
+        $docgiaIds = $this->getRequest()->getParam('tppop');
         if(!is_array($docgiaIds)) {
-            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Vui lòng chọn Độc giả'));
+            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Vui lòng chọn tác phẩm'));
         } else {
             try {
                 foreach ($docgiaIds as $docgiaid) {
-                    $docgia = Mage::getModel('thuvien/docgia')->load($docgiaid);
+                    $docgia = Mage::getModel('thuvien/tppop')->load($docgiaid);
                     $docgia->delete();
                 }
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('adminhtml')->__(
-                        'Có %d Độc giả đã được xóa thành công', count($docgiaIds)
+                        'Có %d tác phẩm đã được xóa thành công', count($docgiaIds)
                     )
                 );
             } catch (Exception $e) {
@@ -176,8 +134,8 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
 
     public function exportCsvAction()
     {
-        $fileName   = 'danhsachdocgia.csv';
-        $content    = $this->getLayout()->createBlock('thuvien/adminhtml_docgia_grid')
+        $fileName   = 'tacpham.csv';
+        $content    = $this->getLayout()->createBlock('thuvien/adminhtml_tacpham_grid')
             ->getCsv();
 
         $this->_sendUploadResponse($fileName, $content);
@@ -185,8 +143,8 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
 
     public function exportXmlAction()
     {
-        $fileName   = 'danhsachdocgia.xml';
-        $content    = $this->getLayout()->createBlock('thuvien/adminhtml_docgia_grid')
+        $fileName   = 'tacpham.xml';
+        $content    = $this->getLayout()->createBlock('thuvien/adminhtml_tacpham_grid')
             ->getXml();
 
         $this->_sendUploadResponse($fileName, $content);
@@ -207,60 +165,6 @@ class  CV_Thuvien_Adminhtml_TacphamController extends Mage_Adminhtml_Controller_
         $response->sendResponse();
         die;
     }
-
-    public function addLePhiAction()
-    {
-        $data = $this->getRequest()->getParams();
-        $resultArr = array();
-
-        if ( isset($data['MaDocGia']) &&  intval($data['MaDocGia']) >0)       {
-                if ($data['NgayNhap']){
-                   $data['NgayNhap'] = date("Y-m-d",strtotime($data['NgayNhap'])) ;
-                }
-                if ($data['HetHan']){
-                    $data['HetHan'] = date("Y-m-d",strtotime($data['HetHan'])) ;
-                }
-                $lephiDocgia = Mage::getModel('thuvien/lephi');
-                if(!Mage::registry('MaDocGia_Lephi')){
-                    Mage::register('MaDocGia_Lephi', $data['MaDocGia']);
-                }
-                $lephiDocgia->setData($data)->save();
-                $resultArr['success'] = 1;
-                $resultArr['message'] = "Thêm lệ phí thành công!";
-                $resultArr['content'] = $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_lephi_grid')->toHtml();
-                $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
-                return;
-        }
-        $resultArr['success'] = 0;
-        $resultArr['message'] = "Vui lòng chọn tác giả cần thêm lệ phí!";
-        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
-        return;
-    }
-
-    public function deleteLePhiAction()
-    {
-        $data = $this->getRequest()->getParams();
-        $resultArr = array();
-        if ( isset($data['MaDocGia']) &&  intval($data['MaDocGia']) >0 && isset($data['MaTaichanh']) &&  intval($data['MaTaichanh']) >0)       {
-            $lephiDocgia = Mage::getModel('thuvien/lephi')->load($data['MaTaichanh']);
-            if ($lephiDocgia->getData('MaTaichanh')) {
-                $lephiDocgia->delete();
-            }
-            if(!Mage::registry('MaDocGia_Lephi')){
-                Mage::register('MaDocGia_Lephi', $data['MaDocGia']);
-            }
-            $resultArr['success'] = 1;
-            $resultArr['message'] = "Xóa lệ phí thành công!";
-            $resultArr['content'] = $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_lephi_grid')->toHtml();
-            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
-            return;
-        }
-        $resultArr['success'] = 0;
-        $resultArr['message'] = "Vui lòng chọn tác giả cần xóa lệ phí!";
-        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
-        return;
-    }
-
 
 }
 

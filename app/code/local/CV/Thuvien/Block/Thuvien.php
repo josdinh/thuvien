@@ -1,4 +1,5 @@
 <?php
+
 class CV_Thuvien_Block_Thuvien extends Mage_Core_Block_Template
 {
 	public function _prepareLayout()

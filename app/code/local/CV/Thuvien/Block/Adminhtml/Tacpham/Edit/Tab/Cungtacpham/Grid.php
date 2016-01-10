@@ -6,7 +6,7 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Cungtacpham_Grid extends Mage_
     public function __construct()
     {
         parent::__construct();
-        $this->setId('tratpGrid');
+        $this->setId('cungtpGrid');
         $this->setDefaultSort('NgayMuon,NgayTra');
         $this->setDefaultDir('DESC');
         $this->setSaveParametersInSession(true);
@@ -14,31 +14,35 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Cungtacpham_Grid extends Mage_
 
     protected function _prepareCollection()
     {
-		if(Mage::registry('tacphamcom_data')->getData('MaTpCom')){
-			$collection = Mage::getModel('thuvien/tacphampop')->getCollection();
-			$collection->getSelect()->join( array('tpcom'=> 'tptacphamcom'), 'tpcom.MaTpCom = main_table.MaTpCom', array('tpcom.TenTacPham','MaTpCom'))
-						->join( array('tpnhaxb'=> 'tpnhaxb'), 'tpnhaxb.MaNhaXB = main_table.MaNhaXB', array('tpnhaxb.NhaXB'))
-						->join( array('tphientrang'=> 'tphientrang'), 'tphientrang.MaHienTrang = main_table.MaHienTrang', array('tphientrang.HienTrang'))
-						->join( array('tptinhtrang'=> 'tptinhtrang'), 'tptinhtrang.MaTinhTrang = main_table.MaTinhTrang', array('tptinhtrang.TinhTrang'))
-						->join( array('tplistkhosach'=> 'tplistkhosach'), 'tplistkhosach.MaKhoSach = main_table.MaKhoSach', array('tplistkhosach.KhoSach'))
-						->where('main_table.MaTpCom = "'.Mage::registry('tacphamcom_data')->getData('MaTpCom').'"')
-			;
-			/* Zend_debug::dump($collection->getData()); */
-			$this->setCollection($collection);			
+		if(Mage::registry('tppop_data')->getData('MaTpPop')){
+            $maTpCom = 0;
+            if(Mage::registry('tppop_data')->getData('MaTpCom')) {
+                $maTpCom = Mage::registry('tppop_data')->getData('MaTpCom');
+            }
+			$collection = Mage::getModel('thuvien/tppop')->getCollection();
+			$collection->getSelect()
+						->joinLeft( array('tpnhaxb'=> 'tpnhaxb'), 'tpnhaxb.MaNhaXB = main_table.MaNhaXB', array('tpnhaxb.NhaXB'))
+						->joinLeft( array('tphientrang'=> 'tphientrang'), 'tphientrang.MaHienTrang = main_table.MaHienTrang', array('tphientrang.HienTrang'))
+						->joinLeft( array('tptinhtrang'=> 'tptinhtrang'), 'tptinhtrang.MaTinhTrang = main_table.MaTinhTrang', array('tptinhtrang.TinhTrang'))
+						->joinLeft( array('tplistkhosach'=> 'tplistkhosach'), 'tplistkhosach.MaKhoSach = main_table.MaKhoSach', array('tplistkhosach.KhoSach'))
+                        -> where('main_table.MaTpCom = "' . $maTpCom . '"');
+
+
+			$this->setCollection($collection);
 			return parent::_prepareCollection();
 		}
     }
 
     protected function _prepareColumns()
     {
-		$this->addColumn('TMaTpPop', array(
+		$this->addColumn('GMaTpPop', array(
             'header'    => Mage::helper('thuvien')->__('ID'),
             'align'     =>'left',
             'width'     => '50px',
             'index'     => 'MaTpPop',
 
         ));
-        $this->addColumn('TMaTpPop', array(
+        $this->addColumn('GMaTpPop', array(
             'header'    => Mage::helper('thuvien')->__('Mã tác phẩm'),
             'align'     =>'left',
             'width'     => '50px',
@@ -46,81 +50,80 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit_Tab_Cungtacpham_Grid extends Mage_
 
         ));
 
-        $this->addColumn('BanSo', array(
+        $this->addColumn('GBanSo', array(
             'header'    => Mage::helper('thuvien')->__('Bản'),
             'align'     =>'left',
             'width'     => '50px',
             'index'     => 'BanSo',
         ));
 
-        $this->addColumn('NhaXB', array(
+        $this->addColumn('GNhaXB', array(
             'header'    => Mage::helper('thuvien')->__('Nhà Xuất Bản'),
             'align'     =>'right',
             'width'     => '50px',
             'index'     => 'NhaXB',
         ));
 
-        $this->addColumn('NamXuatBan', array(
+        $this->addColumn('GNamXuatBan', array(
             'header'    => Mage::helper('thuvien')->__('Năm'),
             'align'     =>'right',
             'width'     => '50px',
             'index'     => 'NamXuatBan',
         ));
-		
-        $this->addColumn('SoTrang', array(
+
+        $this->addColumn('GSoTrang', array(
             'header'    => Mage::helper('thuvien')->__('Trang'),
             'align'     =>'left',
             'width'     => '50px',
             'index'     => 'SoTrang',
         ));
 
-       $this->addColumn('Kho', array(
+       $this->addColumn('GKho', array(
             'header'    => Mage::helper('thuvien')->__('Khổ'),
             'align'     =>'right',
             'width'     => '50px',
             'index'     => 'Kho',
         ));
-		
-		 $this->addColumn('NgayNhap', array(
+
+		 $this->addColumn('GNgayNhap', array(
             'header'    => Mage::helper('thuvien')->__('Ngày Nhập'),
             'align'     =>'right',
             'width'     => '50px',
             'index'     => 'NgayNhap',
         ));
-		
-		 $this->addColumn('GiaTien', array(
+
+		 $this->addColumn('GGiaTien', array(
             'header'    => Mage::helper('thuvien')->__('Giá Tiền'),
             'align'     =>'right',
             'width'     => '50px',
             'index'     => 'GiaTien',
         ));
-		
-		 $this->addColumn('TinhTrang', array(
+
+		 $this->addColumn('GTinhTrang', array(
             'header'    => Mage::helper('thuvien')->__('Tình Trạng'),
             'align'     =>'right',
             'width'     => '50px',
             'index'     => 'TinhTrang',
         ));
-		
-		 $this->addColumn('HienTrang', array(
+
+		 $this->addColumn('GHienTrang', array(
             'header'    => Mage::helper('thuvien')->__('Tác Phẩm'),
             'align'     =>'right',
             'width'     => '50px',
-            'index'     => 'HienTrang',			
+            'index'     => 'HienTrang',
         ));
 
-		 $this->addColumn('KhoSach', array(
+		 $this->addColumn('GKhoSach', array(
             'header'    => Mage::helper('thuvien')->__('Kho'),
             'align'     =>'right',
             'width'     => '50px',
             'index'     => 'KhoSach',
         ));
 
-		
         return parent::_prepareColumns();
     }
 
     private function expiredDates() {
-        return "d-M-yyyy";//Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
+        return "d-M-yyyy";
     }
 }

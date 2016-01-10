@@ -36,7 +36,7 @@
     <?php if($this->getUseContainer()): ?>
     <div class="pager pager-no-toolbar">
     <?php endif ?>
-
+<?php /*
     <?php if($this->getShowAmounts() || $this->getShowPerPage()): ?>
     <div class="count-container">
         <?php if($this->getShowAmounts()): ?>
@@ -65,10 +65,10 @@
         <?php endif ?>
     </div>
     <?php endif; ?>
-
+*/ ?>
     <?php if($this->getLastPageNum()>1): ?>
     <div class="pages">
-        <strong><?php echo $this->__('Page:') ?></strong>
+        <strong><?php echo $this->__('Trang:') ?></strong>
         <ol>
         <?php if (!$this->isFirstPage()): ?>
             <li>

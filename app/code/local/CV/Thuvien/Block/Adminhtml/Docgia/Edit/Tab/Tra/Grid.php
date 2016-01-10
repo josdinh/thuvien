@@ -42,7 +42,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Tra_Grid extends Mage_Adminhtml
         $this->addColumn('TMaTpPop', array(
             'header'    => Mage::helper('thuvien')->__('Mã tác phẩm'),
             'align'     =>'left',
-            'width'     => '50px',
+            'width'     => '10%',
             'index'     => 'MaTpPop',
 
         ));
@@ -50,43 +50,45 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Tra_Grid extends Mage_Adminhtml
         $this->addColumn('TTenTacPham', array(
             'header'    => Mage::helper('thuvien')->__('Nhan đề'),
             'align'     =>'left',
-            'width'     => '50px',
+            'width'     => '50%',
             'index'     => 'TenTacPham',
         ));
 
         $this->addColumn('TNgayMuon', array(
             'header'    => Mage::helper('thuvien')->__('Ngày Mượn'),
             'align'     =>'right',
-            'width'     => '50px',
+            'width'     => '10%',
             'index'     => 'NgayMuon',
+            'type' => 'datetime',
         ));
 
         $this->addColumn('TNgayTra', array(
             'header'    => Mage::helper('thuvien')->__('Ngày Trả'),
             'align'     =>'right',
-            'width'     => '50px',
+            'width'     => '10%',
             'index'     => 'NgayTra',
+            'type' => 'datetime',
         ));
 
         $this->addColumn('THanTra', array(
             'header'    => Mage::helper('thuvien')->__('Kỳ hạn'),
             'align'     =>'left',
-            'width'     => '50px',
+            'width'     => '10%',
             'index'     => 'HanTra',
+            'type' => 'datetime',
         ));
 
        $this->addColumn('TSoNgayTre', array(
             'header'    => Mage::helper('thuvien')->__('Số ngày trễ'),
             'align'     =>'right',
-            'width'     => '50px',
+            'width'     => '10%',
             'index'     => 'SoNgayTre',
+            'renderer' => 'thuvien/adminhtml_docgia_edit_tab_tra_renderer_songaytre',
         ));
 
 
         return parent::_prepareColumns();
     }
 
-    private function expiredDates() {
-        return "d-M-yyyy";//Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
-    }
+
 }

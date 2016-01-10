@@ -27,3 +27,52 @@
 .block-muon-tra li em{
     color: red;
 }
+#docgia_tabs_form_section_content img, .thuvien-adminhtml-tacphamcom-edit #Hinh_image{
+    width: 250px!important;
+    height: auto!important;
+}
+.thuvien-adminhtml-tacphamcom-edit .form-list td.value input.input-text,
+.thuvien-adminhtml-tacphamcom-edit .form-list td.value textarea,
+.thuvien-adminhtml-tacphamcom-edit .form-list td.value select{
+    width: 100%!important;
+}
+#lephidocgiaGrid_table tr.filter{
+    display: none;
+}
+#lephidocgiaGrid_table span#xoa_le_phi{
+    border: 1px solid orangered;
+    background: orangered;
+    padding: 2px 5px;
+    color: #ffffff;
+}
+.thuvien-adminhtml-mavach-index #anchor-content div:first-child{
+    margin-top: 20px;
+}
+.thuvien-adminhtml-mavach-index form{
+    width: 500px;
+    margin:auto;
+    text-align: center;
+
+}
+.thuvien-adminhtml-mavach-index table{
+    width: 200px;
+    margin: auto;
+}
+.thuvien-adminhtml-mavach-index table td{
+    margin-right: 20px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+.thuvien-adminhtml-mavach-index table input{
+    margin-right: 20px;
+    height: 25px;
+    line-height: 25px;
+    width: 100px;
+    padding-left:10px;
+}
+.thuvien-adminhtml-mavach-index button {
+    padding: 5px 10px 6px;
+}

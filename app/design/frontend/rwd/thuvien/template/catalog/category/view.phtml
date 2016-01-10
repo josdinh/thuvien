@@ -1,14 +1,47 @@
-
-<div id="product_all">
-    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-
+<div class="category-view">
     <?php
-    $collection = $this->getCollection();
-    zend_debug::dump($collection->getData());
+    $currentCategory  = $this->getCurrentCategory();
+    if ($currentCategory->getData('TenDDC')) :
     ?>
+        <div class="title">
+            <span><?php echo $currentCategory->getData('TenDDC') ?></span>
+        </div>
+        <ul class="product-list">
+            <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+            <?php
+            $collection = $this->getCollection();
 
-    <div id="pe_kajaxproduct_toolbar">
-        <?php echo $this->getToolbarHtml(); ?>
-    </div>
+            if ($collection->getSize()) :
+                $i =0;
+                foreach($collection as $book):
+                    $i++;
 
+             ?>
+                <li <?php if($i%5==1 && $i>1) echo 'class="clear-both"';?>>
+                        <div class="">
+                            <a href="<?php echo Mage::getUrl('thuvien/catalog_product/view',array('id'=>$book->getData('MaTpCom'))) ?>"><img src="<?php echo $this->getImages($book->getData('Hinh')) ?>" title="<?php echo $book->getData('TenTacPham')?>">
+                            </a>
+                        </div>
+                        <div class="book-infor">
+                            <div class="prodouct-name">
+                                <a href="<?php echo Mage::getUrl('thuvien/catalog_product/view',array('id'=>$book->getData('MaTpCom'))) ?>" title="<?php echo $book->getData('TenTacPham')?>">
+                                    <?php echo $book->getData('TenTacPham') ?>
+                                </a>
+                            </div>
+
+                            <?php if($book->getData('TapSo')): ?>
+                                <div>Tập số: <?php echo $book->getData('TapSo')?></div>
+                            <?php endif; ?>
+                            <div> Tác giả: <a href="<?php echo Mage::getUrl('thuvien/tacgia/listp',array('id'=>$book->getData('MaKyHieuTg'))) ?>"><span class="tacgia">  <?php echo $book->getTacGia(); ?> </span></a></div>
+                        </div>
+                </li>
+            <?php
+                endforeach;
+            endif;
+            ?>
+        </ul>
+        <div class="toolbar">
+            <?php echo $this->getToolbarHtml(); ?>
+        </div>
+    <?php endif; ?>
 </div>

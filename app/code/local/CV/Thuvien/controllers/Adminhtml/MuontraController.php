@@ -59,14 +59,17 @@ class  CV_Thuvien_Adminhtml_MuontraController extends Mage_Adminhtml_Controller_
     {
         $data = $this->getRequest()->getParams();
         $resultArr = array();
-        if ( isset($data['madocgia']) &&  intval($data['madocgia']) >0 && isset($data['matp']) && isset($data['hantra']) && strlen($data['hantra'])>=8)
+        if ( isset($data['madocgia']) &&  intval($data['madocgia']) >0 && isset($data['matp']))
         {
-            $tppopDetail = Mage::getModel('thuvien/tppop')->load($data['matp']);
-            if ($tppopDetail->getData('MaTpPop') && $tppopDetail->getData('MaHienTrang') == 1) {
+            $tppopDetail = Mage::getModel('thuvien/tppop')->load($data['matp'],'MaTpPop');
+            if ($tppopDetail->getData('MaTpPop') && $tppopDetail->getData('MaHienTrang') == 1 && $tppopDetail->getData('MaTpPop') == $data['matp']) {
                 // them du lieu vao bang muon
                 $muontra = Mage::getModel('thuvien/dgmuontra');
-                $ngaymuon = date('Y-m-d 00:00:00',time());
-                $hantra = date('Y-m-d 00:00:00',strtotime($data['hantra']));
+                $ngaymuon = date('Y-m-d',time());
+                $kyHanTra = Mage::helper('thuvien')->hanDinhMuon()." days";
+                $date = date_create(date('Y-m-d',time()));
+                date_add($date,date_interval_create_from_date_string($kyHanTra));
+                $hantra= date_format($date,"Y-m-d");
                 $muontra->setData('MaTpPop',$tppopDetail->getData('MaTpPop'))->setData('NgayMuon',$ngaymuon)->setData('HanTra',$hantra)
                         ->setData('MaDocGia',$data['madocgia'])
                         ->save();
@@ -92,7 +95,7 @@ class  CV_Thuvien_Adminhtml_MuontraController extends Mage_Adminhtml_Controller_
             }
             else {
                 $resultArr['success'] = 0;
-                $resultArr['message'] = Mage::helper('thuvien')->__("Bạn không thể mượn tác phẩm có mã %s vào lúc này!",$data['matp']);
+                $resultArr['message'] = Mage::helper('thuvien')->__("Tác phẩm đang được mượn nên bạn không thể mượn tác phẩm có mã %s vào lúc này!",$data['matp']);
             }
         }
         else {
@@ -120,21 +123,31 @@ class  CV_Thuvien_Adminhtml_MuontraController extends Mage_Adminhtml_Controller_
                 $tpDetail = $tpCollection->getLastItem();
 
                 $tenTp = "";
-                if ($tpDetail->getData('MaTpPop')) {
+                if ($tpDetail->getData('MaTpPop') && $tpDetail->getData('MaTpPop') == $data['matp']) {
                     $tpDetail->setData('MaHienTrang',1)->save();
                     $tenTp = $tpDetail->getData('TenTacPham');
                 }
+
 
                 if(!Mage::registry('MaDocGia_Tra')){
                     Mage::register('MaDocGia_Tra', $data['madocgia']);
                 }
 
-                $mtDetail->setData('NgayTra',date('Y-m-d',time()))->setData('MaMuonTra',$mtDetail->getData('MaMuonTra'))->save();
-                $resultArr['success'] = 1;
-                $resultArr['message'] = Mage::helper('thuvien')->__('Bạn đã trả tác phẩm %s thành công. Xin cảm ơn! ',$tenTp);
-                $resultArr['content'] = $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_tra_grid')->toHtml();
-                $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
-                return;
+                if($data['matp'] == $mtDetail->getData('MaTpPop')) {
+
+                    $mtDetail->setData('NgayTra', date('Y-m-d', time()))->setData('MaMuonTra', $mtDetail->getData('MaMuonTra'))->save();
+                    $resultArr['success'] = 1;
+                    $resultArr['message'] = Mage::helper('thuvien')->__('Bạn đã trả tác phẩm %s thành công. Xin cảm ơn! ', $tenTp);
+                    $resultArr['content'] = $this->getLayout()->createBlock('thuvien/adminhtml_docgia_edit_tab_tra_grid')->toHtml();
+                    $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
+                    return;
+                }
+                else {
+                    $resultArr['success'] = 0;
+                    $resultArr['message'] = Mage::helper('thuvien')->__('Không tìm thấy tác phẩm cần trả trong phần mượn trả. Vui lòng kiểm tra lại');
+                    $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($resultArr));
+                    return;
+                }
             }
             $resultArr['success'] = 0;
             $resultArr['message'] = Mage::helper('thuvien')->__('Thông tin tác phẩm trả không hợp lệ. Vui lòng kiểm tra lại.');

@@ -25,6 +25,7 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 -->
+<!--
 <config>
     <menu>
         <newsletter translate="title" module="newsletter">
@@ -88,3 +89,4 @@
        </resources>
     </acl>
 </config>
+-->

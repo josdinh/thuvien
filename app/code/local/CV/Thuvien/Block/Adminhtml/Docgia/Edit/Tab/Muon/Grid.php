@@ -38,7 +38,7 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Muon_Grid extends Mage_Adminhtm
         $this->addColumn('MMaTpPop', array(
             'header'    => Mage::helper('thuvien')->__('Mã tác phẩm'),
             'align'     =>'left',
-            'width'     => '50px',
+            'width'     => '10%',
             'index'     => 'MaTpPop',
 
         ));
@@ -46,51 +46,29 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Muon_Grid extends Mage_Adminhtm
         $this->addColumn('MTenTacPham', array(
             'header'    => Mage::helper('thuvien')->__('Nhan đề'),
             'align'     =>'left',
-            'width'     => '50px',
+            'width'     => '50%',
             'index'     => 'TenTacPham',
         ));
 
         $this->addColumn('MNgayMuon', array(
             'header'    => Mage::helper('thuvien')->__('Ngày Mượn'),
             'align'     =>'right',
-            'width'     => '50px',
+            'width'     => '20%',
             'index'     => 'NgayMuon',
-        ));
+            'type' => 'datetime',
 
-        $this->addColumn('NgayTra', array(
-            'header'    => Mage::helper('thuvien')->__('Ngày Trả'),
-            'align'     =>'right',
-            'width'     => '50px',
-            'index'     => 'NgayTra',
         ));
 
         $this->addColumn('HanTra', array(
             'header'    => Mage::helper('thuvien')->__('Kỳ hạn'),
             'align'     =>'left',
-            'width'     => '50px',
+            'width'     => '20%',
             'index'     => 'HanTra',
+            'type' => 'datetime',
         ));
-
-       $this->addColumn('SoNgayTre', array(
-            'header'    => Mage::helper('thuvien')->__('Số ngày trễ'),
-            'align'     =>'right',
-            'width'     => '50px',
-            'index'     => 'SoNgayTre',
-        ));
-
-    /*
-        $this->addColumn('MaTaichanh', array(
-            'header'    => Mage::helper('thuvien')->__('Trả sách'),
-            'align'     =>'center',
-            'index'     => 'MaTaichanh',
-            'width' =>"10%",
-            'renderer' => 'thuvien/adminhtml_docgia_edit_tab_muon_renderer_tra',
-        ));*/
 
         return parent::_prepareColumns();
     }
 
-    private function expiredDates() {
-        return "d-M-yyyy";//Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
-    }
+
 }

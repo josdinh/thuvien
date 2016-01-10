@@ -33,18 +33,10 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Lephi_Grid extends Mage_Adminht
     protected function _prepareColumns()
     {
 
-        $this->addColumn('NgayNhap', array(
-            'header'    => Mage::helper('thuvien')->__('Ngày nhập'),
-            'align'     =>'left',
-            'width'     => '50px',
-            'index'     => 'NgayNhap',
-
-        ));
-
         $this->addColumn('LyDo', array(
             'header'    => Mage::helper('thuvien')->__('Lý do'),
             'align'     =>'left',
-            'width'     => '50px',
+            'width'     => '30%',
             'index'     => 'LyDo',
             'index'     => 'LyDo',
         ));
@@ -52,23 +44,27 @@ class CV_Thuvien_Block_Adminhtml_Docgia_Edit_Tab_Lephi_Grid extends Mage_Adminht
         $this->addColumn('SoTien', array(
             'header'    => Mage::helper('thuvien')->__('Số tiền'),
             'align'     =>'right',
-            'width'     => '50px',
+            'width'     => '20%',
             'index'     => 'SoTien',
+        ));
+
+        $this->addColumn('NgayNhap', array(
+            'header'    => Mage::helper('thuvien')->__('Ngày nhập'),
+            'align'     =>'left',
+            'width'     => '20%',
+            'type' => 'datetime',
+            'index'     => 'NgayNhap',
+
         ));
 
         $this->addColumn('HetHan', array(
             'header'    => Mage::helper('thuvien')->__('Kỳ hạn'),
             'align'     =>'left',
-            'width'     => '50px',
+            'width'     => '20%',
             'index'     => 'HetHan',
+            'type' => 'datetime',
         ));
 
-       /* $this->addColumn('GhiChu', array(
-            'header'    => Mage::helper('thuvien')->__('Ghi chú'),
-            'align'     =>'right',
-            'width'     => '50px',
-            'index'     => 'GhiChu',
-        ));*/
 
         $this->addColumn('MaTaichanh', array(
             'header'    => Mage::helper('thuvien')->__('Xóa'),

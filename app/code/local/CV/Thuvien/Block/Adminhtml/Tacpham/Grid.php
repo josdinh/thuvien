@@ -6,61 +6,154 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Grid extends Mage_Adminhtml_Block_Widge
   {
       parent::__construct();
       $this->setId('tacphamGrid');
-      $this->setDefaultSort('MaTpCom');
+      $this->setDefaultSort('MaTpPop');
       $this->setDefaultDir('DESC');
       $this->setSaveParametersInSession(true);
   }
 
   protected function _prepareCollection()
   {
-	  //echo get_class(Mage::getModel('thuvien/tacphamcom'));die;
-      $collection = Mage::getModel('thuvien/tacphamcom')->getCollection();
+	  $collection = Mage::getModel('thuvien/tppop')->getCollection();
+      $collection->getSelect()
+                ->joinLeft(array('tpcom'=>'tptacphamcom'),'tpcom.MaTpCom = main_table.MaTpCom',array('tpcom.*'))
+                ->joinLeft(array('loaitp'=>'tplisttheloai'),'loaitp.MaTheLoai = tpcom.MaLoaiTacPham',array('loaitp.TheLoai'))
+                ->joinLeft(array('sachbo'=>'tplistsachbo'),'sachbo.MaSachBo = tpcom.MaSachBo',array('sachbo.SachBo'))
+                ->joinLeft(array('ddc'=>'tpddc'),'ddc.MaDDC = tpcom.MaDDC',array('ddc.TenDDC'))
+                ->joinLeft(array('nxb'=>'tpnhaxb'),'nxb.MaNhaXB = main_table.MaNhaXB',array('NhaXB'))
+                ->joinLeft(array('htr'=>'tphientrang'),'htr.MaHienTrang = main_table.MaHienTrang',array('HienTrang'))
+                ->joinLeft(array('ttr'=>'tptinhtrang'),'ttr.MaTinhTrang = main_table.MaTinhTrang',array('TinhTrang'))
+                ->joinLeft(array('kho'=>'tplistkhosach'),'kho.MaKhoSach = main_table.MaKhoSach',array('KhoSach'));
+
       $this->setCollection($collection);
-	  //Zend_debug::dump($collection->getData());
+
       return parent::_prepareCollection();
   }
 
   protected function _prepareColumns()
-  { 
-      $this->addColumn('MaTpCom', array(
-          'header'    => Mage::helper('thuvien')->__('Mã Tác Phẩm'),
+  {
+
+      $this->addColumn('MaTpPop', array(
+          'header'    => Mage::helper('thuvien')->__('Mã Tác Phẩm Thư viện'),
           'align'     =>'left',
           'width'     => '50px',
-          'index'     => 'MaTpCom',
+          'index'     => 'MaTpPop',
+          'width' => '5%'
       ));
 
-      $this->addColumn('tentacpham', array(
+      $this->addColumn('TenTacPham', array(
           'header'    => Mage::helper('thuvien')->__('Tên tác phẩm'),
           'align'     =>'left',
           'width'     => '50px',
           'index'     => 'TenTacPham',
+          'width' => '20%'
       ));
 
-      $this->addColumn('PhuThem', array(
-          'header'    => Mage::helper('thuvien')->__('Phụ Thêm'),
+      $this->addColumn('TenDDC', array(
+          'header'    => Mage::helper('thuvien')->__('DDC'),
           'align'     =>'left',
           'width'     => '50px',
-          'index'     => 'PhuThem',
+          'index'     => 'TenDDC',
+          'index'     => 'TenDDC',
+          'width' => '15%'
       ));
 
-      $this->addColumn('Tomluoc', array(
-          'header'    => Mage::helper('thuvien')->__('Tóm lược'),
+      $this->addColumn('SachBo', array(
+          'header'    => Mage::helper('thuvien')->__('Sách bộ'),
           'align'     =>'left',
           'width'     => '50px',
-          'index'     => 'Tomluoc',
+          'index'     => 'SachBo',
+          'width' => '10%'
       ));
 
-      
-         $this->addExportType('*exportCsv', Mage::helper('thuvien')->__('CSV'));
-         $this->addExportType('*exportXml', Mage::helper('thuvien')->__('XML'));
+      $this->addColumn('TapSo', array(
+          'header'    => Mage::helper('thuvien')->__('Tập Số'),
+          'align'     =>'left',
+          'width'     => '50px',
+          'index'     => 'TapSo',
+          'width' => '10%'
+      ));
+
+      $this->addColumn('BanSo', array(
+          'header'    => Mage::helper('thuvien')->__('Bản số'),
+          'align'     =>'left',
+          'width'     => '50px',
+          'index'     => 'BanSo',
+      ));
+
+      $this->addColumn('NhaXB', array(
+          'header'    => Mage::helper('thuvien')->__('Nhà XB'),
+          'align'     =>'right',
+          'width'     => '50px',
+          'index'     => 'NhaXB',
+      ));
+
+      $this->addColumn('NamXuatBan', array(
+          'header'    => Mage::helper('thuvien')->__('Năm XB'),
+          'align'     =>'right',
+          'width'     => '50px',
+          'index'     => 'NamXuatBan',
+      ));
+
+      $this->addColumn('SoTrang', array(
+          'header'    => Mage::helper('thuvien')->__('Trang'),
+          'align'     =>'left',
+          'width'     => '50px',
+          'index'     => 'SoTrang',
+      ));
+
+      $this->addColumn('Kho', array(
+          'header'    => Mage::helper('thuvien')->__('Khổ'),
+          'align'     =>'right',
+          'width'     => '50px',
+          'index'     => 'Kho',
+      ));
+
+      $this->addColumn('NgayNhap', array(
+          'header'    => Mage::helper('thuvien')->__('Ngày nhập'),
+          'align'     =>'right',
+          'width'     => '50px',
+          'index'     => 'NgayNhap',
+      ));
+
+      $this->addColumn('GiaTien', array(
+          'header'    => Mage::helper('thuvien')->__('Giá tiền'),
+          'align'     =>'right',
+          'width'     => '50px',
+          'index'     => 'GiaTien',
+      ));
+
+      $this->addColumn('TinhTrang', array(
+          'header'    => Mage::helper('thuvien')->__('Tình trạng'),
+          'align'     =>'right',
+          'width'     => '50px',
+          'index'     => 'TinhTrang',
+      ));
+
+      $this->addColumn('HienTrang', array(
+          'header'    => Mage::helper('thuvien')->__('Hiện trạng'),
+          'align'     =>'right',
+          'width'     => '50px',
+          'index'     => 'HienTrang',
+      ));
+
+      $this->addColumn('KhoSach', array(
+          'header'    => Mage::helper('thuvien')->__('Kho sách'),
+          'align'     =>'right',
+          'width'     => '50px',
+          'index'     => 'KhoSach',
+      ));
+
+
+      $this->addExportType('*/*/exportCsv', Mage::helper('thuvien')->__('CSV'));
+      $this->addExportType('*/*/exportXml', Mage::helper('thuvien')->__('XML'));
 
       return parent::_prepareColumns();
   }
 
     protected function _prepareMassaction()
     {
-        $this->setMassactionIdField('MaDocGia');
-        $this->getMassactionBlock()->setFormFieldName('docgia');
+        $this->setMassactionIdField('MaTpPop');
+        $this->getMassactionBlock()->setFormFieldName('tppop');
 
         $this->getMassactionBlock()->addItem('delete', array(
              'label'    => Mage::helper('thuvien')->__('Xóa Độc giả đã chọn'),
@@ -69,22 +162,6 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Grid extends Mage_Adminhtml_Block_Widge
              'confirm'  => Mage::helper('thuvien')->__('Bạn có chắc chắn xóa không?')
         ));
 
-        /* $statuses = Mage::getSingleton('thuvien/status')->getOptionArray();
-
-        array_unshift($statuses, array('label'=>'', 'value'=>''));
-        $this->getMassactionBlock()->addItem('status', array(
-             'label'=> Mage::helper('managelicense')->__('Thay đổi trạng thái'),
-             'url'  => $this->getUrl('//massStatus', array('_current'=>true)),
-             'additional' => array(
-                    'visibility' => array(
-                         'name' => 'status',
-                         'type' => 'select',
-                         'class' => 'required-entry',
-                         'label' => Mage::helper('managelicense')->__('Status'),
-                         'values' => $statuses
-                     )
-             )
-        ));*/
         return $this;
     }
 

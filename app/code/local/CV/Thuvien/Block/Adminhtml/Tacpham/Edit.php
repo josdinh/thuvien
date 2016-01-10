@@ -30,18 +30,27 @@ class CV_Thuvien_Block_Adminhtml_Tacpham_Edit extends Mage_Adminhtml_Block_Widge
             function saveAndContinueEdit(){
                 editForm.submit($('edit_form').action+'back/edit/');
             }
-
-
         ";
+    }
+
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+        if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
+            $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
+        }
     }
 
     public function getHeaderText()
     {    	
-        if( Mage::registry('tacphamcom_data') && Mage::registry('tacphamcom_data')->getId() ) {
-        	$arrDetail = Mage::registry('tacphamcom_data')->getData();
-            return Mage::helper('thuvien')->__("Sửa thông tin Tác Phẩm '%s'", $this->htmlEscape($arrDetail['TenTacPham']));
+        if( Mage::registry('tppop_data') && Mage::registry('tppop_data')->getId() ) {
+            if(Mage::registry('tppop_data')->getData('TpMoi') == 1){
+                return Mage::helper('thuvien')->__('Thêm bản sách');
+            }
+        	$arrDetail = Mage::registry('tppop_data')->getData();
+            return Mage::helper('thuvien')->__("Sửa thông tin bản sách '%s'", $this->htmlEscape($arrDetail['TenTacPham']));
         } else {
-            return Mage::helper('thuvien')->__('Thêm Tác Phẩm');
+            return Mage::helper('thuvien')->__('Thêm bản sách');
         }
     }
 }

@@ -8,8 +8,8 @@ class CV_Thuvien_Block_Catalog_Category_View extends Mage_Core_Block_Template
     public function __construct()
     {
         parent::__construct();
-        $collection =  Mage::getModel('thuvien/tacphamcom')->getCollection()
-                        ->addFieldToFilter('MaSachBo',$this->getCurrentCategory()->getData('MaSachBo'));
+        $collection =  Mage::getModel('thuvien/tpcom')->getCollection()
+                       ->addFieldToFilter('MaDDC',$this->getCurrentCategory()->getData('MaDDC'));
         $this->setCollection($collection);
     }
 
@@ -17,11 +17,11 @@ class CV_Thuvien_Block_Catalog_Category_View extends Mage_Core_Block_Template
     {
         parent::_prepareLayout();
 
-        $this->getLayout()->createBlock('catalog/breadcrumbs');
+      //  $this->getLayout()->createBlock('catalog/breadcrumbs');
 
         if ($headBlock = $this->getLayout()->getBlock('head')) {
             $category = $this->getCurrentCategory();
-            if ($title = $category->getData('SachBo')) {
+            if ($title = $category->getData('TenDDC')) {
                 $headBlock->setTitle($title);
             }
         }
@@ -62,5 +62,9 @@ class CV_Thuvien_Block_Catalog_Category_View extends Mage_Core_Block_Template
         return $this->getChildHtml('toolbar');
     }
 
+    public function getImages($url)
+    {
+        return $this->getSkinUrl('images/demobooks/10022.jpg');
+    }
 
 }

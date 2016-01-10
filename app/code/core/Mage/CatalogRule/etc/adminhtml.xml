@@ -25,7 +25,8 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 -->
-<config>
+
+<!--<config>
     <menu>
          <promo translate="title" module="catalogrule">
             <title>Promotions</title>
@@ -56,4 +57,4 @@
             </admin>
         </resources>
      </acl>
-</config>
+</config>-->

@@ -34,33 +34,40 @@
             <?php echo $this->getChildHtml('store_language') ?>
         </div>
         <?php echo $this->getChildHtml('currency_switcher') ?>
-        <div class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?> <?php echo $this->getAdditionalHtml() ?></div>
+        <div class="welcome-msg"><?php //echo $this->getChildHtml('welcome') ?> <?php //echo $this->getAdditionalHtml() ?></div>
 
         <div id="header-account" class="skip-content">
-            <?php echo $this->getChildHtml('topLinks') ?>
+            <div class="links">
+                <ul>
+                    <?php
+                        $isLoggedIn = Mage::getSingleton('customer/session')->isLoggedIn();
+                        if ($isLoggedIn):
+                    ?>
+                            <li class="first"><a title="Đăng ký" href="http://thuvien.localhost/index.php/customer/account/">Tài khoản</a></li>
+                            <li class=" last"><a title="Đăng nhập" href="http://thuvien.localhost/index.php/customer/account/logout/">Thoát</a></li>
+                    <?php else: ?>
+                            <li class="first"><a title="Đăng ký" href="http://thuvien.localhost/index.php/customer/account/create">Đăng ký</a></li>
+                            <li class=" last"><a title="Đăng nhập" href="http://thuvien.localhost/index.php/customer/account/login/">Đăng nhập</a></li>
+                    <?php endif; ?>
+
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
 <header id="header" class="page-header">
     <div class="page-header-container">
-        <div class="header-logo-cart container">
-            <div class="top-left">
-                &nbsp; 0944886107
-            </div>
-            <div class="top-center">
+        <div class="header-logo-cart">
+            <div class="top-banner container">
                 <a class="logo" href="<?php echo $this->getUrl('') ?>">
                     <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="large" />
-                   <!-- <img src="<?php /*echo $this->getLogoSrcSmall() */?>" alt="<?php /*echo $this->getLogoAlt() */?>" class="small" />-->
+                </a>
+                <a class="banner" href="<?php echo $this->getUrl('')?>" >
+                    <img src="<?php echo $this->getSkinUrl('images/banner.png') ?>" />
                 </a>
             </div>
-            <div class="top-right">
-                <div class="account-cart-wrapper">
-                    <div class="header-minicart">
-                        <?php echo $this->getChildHtml('minicart_head'); ?>
-                    </div>
-                </div>
-            </div>
+
 
             <!-- Navigation -->
             <!--<div id="header-nav" class="skip-content">

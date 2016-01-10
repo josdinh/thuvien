@@ -3,7 +3,7 @@
     <default>
         <reference name="head">
             <action method="addItem"><type>skin_css</type><name>thuvien/style.css</name></action>
-            <action method="addItem"><type>skin_js</type><name>js/thuvien.js</name></action>
+           <action method="addItem"><type>skin_js</type><name>js/thuvien.js</name></action>
         </reference>
     </default>
     <thuvien_adminhtml_docgia_index>
@@ -17,7 +17,6 @@
             <action method="addItem"><type>skin_js</type><name>js/docgia.js</name></action>
         </reference>
     </thuvien_adminhtml_docgia_edit>
-
 
     <thuvien_adminhtml_muontra_index>
         <reference name="head">
@@ -35,10 +34,18 @@
     </thuvien_adminhtml_tacpham_index>
 	
 	<thuvien_adminhtml_tacpham_edit>
-        <!-- <reference name="content">
-            <block type="thuvien/adminhtml_tacpham_edit_tab_form" name="tacpham" />
-        </reference> -->
+        <update handle="editor" />
+        <reference name="content">
+            <block type="thuvien/adminhtml_tacpham_edit" name="tacpham_edit"></block>
+        </reference>
     </thuvien_adminhtml_tacpham_edit>
+
+
+    <thuvien_adminhtml_tacphamcom_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_tacphamcom" name="tacphamcom" />
+        </reference>
+    </thuvien_adminhtml_tacphamcom_index>
 
     <thuvien_adminhtml_theloai_index>
         <reference name="content">
@@ -83,10 +90,118 @@
         </reference>
     </thuvien_adminhtml_nhaxb_index>
 
+    <thuvien_adminhtml_annhan_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_annhan" name="annhan"/>
+        </reference>
+    </thuvien_adminhtml_annhan_index>
+
+    <thuvien_adminhtml_luuky_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_luuky" name="luuky"/>
+        </reference>
+    </thuvien_adminhtml_luuky_index>
+
     <thuvien_adminhtml_khosach_index>
         <reference name="content">
             <block type="thuvien/adminhtml_khosach" name="khosach"/>
         </reference>
     </thuvien_adminhtml_khosach_index>
+
+
+    <thuvien_adminhtml_tacphamcom_tacgiakhac>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="thuvien/adminhtml_tacphamcom_edit_tab_tacgiakhac_grid" name="tacpham.tacgiakhac.grid"/>
+            <block type="adminhtml/widget_grid_serializer" name="grid_serializer">
+                <reference name="grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>tacpham.tacgiakhac.grid</grid_block_name>
+                        <data_callback>getSelectedTacgiakhac</data_callback>
+                        <hidden_input_name>tacgiakhac_ids</hidden_input_name>
+                        <reload_param_name>tgkhac</reload_param_name>
+                    </action>
+                </reference>
+                <action method="addColumnInputName">
+                    <input_name>position</input_name>
+                </action>
+            </block>
+        </block>
+    </thuvien_adminhtml_tacphamcom_tacgiakhac>
+
+   <thuvien_adminhtml_tacphamcom_tacgiakhacgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="thuvien/adminhtml_tacphamcom_edit_tab_tacgiakhac_grid" name="tacpham.tacgiakhac.grid"/>
+        </block>
+    </thuvien_adminhtml_tacphamcom_tacgiakhacgrid>
+
+
+    <thuvien_adminhtml_tacphamcom_dichgia>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="thuvien/adminhtml_tacphamcom_edit_tab_dichgia" name="dichgia.grid"/>
+            <block type="adminhtml/widget_grid_serializer" name="grid_serializer">
+                <reference name="grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>dichgia.grid</grid_block_name>
+                        <data_callback>getSelectedDichgia</data_callback>
+                        <hidden_input_name>dichgia_ids</hidden_input_name>
+                        <reload_param_name>dichgia</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </thuvien_adminhtml_tacphamcom_dichgia>
+
+    <thuvien_adminhtml_tacphamcom_dichgiagrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="thuvien/adminhtml_tacphamcom_edit_tab_dichgia" name="dichgia.grid"/>
+        </block>
+    </thuvien_adminhtml_tacphamcom_dichgiagrid>
+
+
+    <thuvien_adminhtml_tacphamcom_cungtp>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="thuvien/adminhtml_tacphamcom_edit_tab_cungtacpham" name="cungtp.grid"/>
+            <block type="adminhtml/widget_grid_serializer" name="grid_serializer">
+                <reference name="grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>cungtp.grid</grid_block_name>
+                        <data_callback>getSelectedCungtp</data_callback>
+                        <hidden_input_name>cungtp_ids</hidden_input_name>
+                        <reload_param_name>cungtp</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </thuvien_adminhtml_tacphamcom_cungtp>
+
+    <thuvien_adminhtml_tacphamcom_cungtpgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="thuvien/adminhtml_tacphamcom_edit_tab_cungtacpham" name="cungtp.grid"/>
+        </block>
+    </thuvien_adminhtml_tacphamcom_cungtpgrid>
+
+    <thuvien_adminhtml_ngonngu_index>
+        <reference name="content">
+            <block type="thuvien/adminhtml_ngonngu" name="ngonngu" />
+        </reference>
+    </thuvien_adminhtml_ngonngu_index>
+
+    <thuvien_adminhtml_mavach_index>
+        <reference name="content">
+            <block type="core/template" name="mavach" template="thuvien/mavach/form.phtml"/>
+        </reference>
+    </thuvien_adminhtml_mavach_index>
+
+    <thuvien_adminhtml_danhsach_index>
+        <reference name="content">
+            <block type="core/template" name="danhsach" template="thuvien/danhsach/form.phtml"/>
+        </reference>
+    </thuvien_adminhtml_danhsach_index>
 
 </layout>
